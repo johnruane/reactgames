@@ -1,0 +1,32 @@
+.snake-game-wrapper {
+  display: grid;
+  grid-template-columns: minmax(auto, 1fr) auto;
+  margin: 0 auto;
+  gap: 1rem;
+  color: var(--color-white);
+}
+
+.snake-panel-wrapper {
+  gap: 0.5rem;
+  display: flex;
+}
+
+.snake-board {
+  & .board-cell,
+  & .board-cell::after {
+    @media (min-width: 768px) {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  /* Snake colour */
+  [data-value='1']::after {
+    background: var(--color-white);
+  }
+
+  /* Food colour */
+  [data-value='2']::after {
+    background: #008000;
+  }
+}

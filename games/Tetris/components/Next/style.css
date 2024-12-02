@@ -1,0 +1,9 @@
+.next-board {
+  box-shadow: none;
+  margin-top: 0.5rem;
+
+  & .board-cell[data-value='0'],
+  & .board-cell[data-value='0']::after {
+    outline: none;
+  }
+}
