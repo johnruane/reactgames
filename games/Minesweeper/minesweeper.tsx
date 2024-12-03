@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import Cell from './components/Cell';
-import { Board, Controls, Panel } from './shared/components';
+import { Board, Controls, Panel } from '../../shared/components';
 
-import { create2dArray } from './shared/utils';
-import { useInterval, useMediaQuery } from './shared/utils/hooks';
+import { create2dArray } from '../../shared/utils';
+import { useInterval, useMediaQuery } from '../../shared/utils/hooks';
 
 import {
   depthFirstSearch,
@@ -45,7 +45,7 @@ const Minesweeper = ({
   });
 
   const cluesBoardRef = useRef<number[][]>(
-    generateCluesBoard({ board: mineBoard, emptyCellValue }),
+    generateCluesBoard({ board: mineBoard, emptyCellValue })
   );
 
   const [displayBoard, setDisplayBoard] = useState(
@@ -53,7 +53,7 @@ const Minesweeper = ({
       numberOfRows: 9,
       numberOfColumns: 9,
       fillValue: emptyCellValue,
-    }),
+    })
   );
 
   const [hasGameStarted, setHasGameStarted] = useState(false);
@@ -90,9 +90,7 @@ const Minesweeper = ({
     });
 
     // If cell is 9 (a mine) set 'game over'
-    if (
-      getCellValue({ board: cluesBoardRef.current, pos: selectedCellPos }) === 9
-    ) {
+    if (getCellValue({ board: cluesBoardRef.current, pos: selectedCellPos }) === 9) {
       setGameOver(GAME_LOSE);
       return;
     }
@@ -192,10 +190,7 @@ const Minesweeper = ({
         const targetCellPos = targetDataPos ? JSON.parse(targetDataPos) : null;
 
         // Flag cell
-        if (
-          numberOfMines - flagsMarked.length !== 0 &&
-          targetDataValue === '-1'
-        ) {
+        if (numberOfMines - flagsMarked.length !== 0 && targetDataValue === '-1') {
           target.setAttribute('data-value', '10');
           setFlagsMarked((prev) => [...prev, targetCellPos]);
         }
@@ -227,28 +222,28 @@ const Minesweeper = ({
 
   return (
     <>
-      <div className="gp-game-wrapper minesweeper-game-wrapper">
-        <div className="minesweeper-panel-wrapper">
+      <div className='gp-game-wrapper minesweeper-game-wrapper'>
+        <div className='minesweeper-panel-wrapper'>
           <Panel
             sections={[
               { heading: 'clock', value: clock },
               { heading: 'flags', value: numberOfMines - flagsMarked.length },
             ]}
           />
-          <span className="minesweeper-emoji"> {gameOver ? '😵' : '😀'}</span>
+          <span className='minesweeper-emoji'> {gameOver ? '😵' : '😀'}</span>
         </div>
 
-        <div className="overlay-wrapper">
+        <div className='overlay-wrapper'>
           <Board
             ref={boardRef}
             board={displayBoard}
             CellComponent={Cell}
-            className="minesweeper-board"
+            className='minesweeper-board'
             onClickCellCallback={handleCellClick}
           />
-          <div className="overlay-text-wrapper">
+          <div className='overlay-text-wrapper'>
             {gameOver && (
-              <p className="overlay-text">
+              <p className='overlay-text'>
                 {gameOver === 'win' ? 'You win!' : 'You Lose'}
               </p>
             )}
@@ -256,10 +251,10 @@ const Minesweeper = ({
         </div>
       </div>
 
-      <div className="game-instructions">
-        <p className="panel-text panel-text-bold">Instructions</p>
+      <div className='game-instructions'>
+        <p className='panel-text panel-text-bold'>Instructions</p>
 
-        <ul className="panel-text game-list">
+        <ul className='panel-text game-list'>
           <li>Press START to begin the game or play again when GAME OVER.</li>
           <li>To quit and close, press QUIT.</li>
           {useMediaQuery('DESKTOP') ? (
@@ -278,7 +273,7 @@ const Minesweeper = ({
         </ul>
       </div>
 
-      <div className="game-controls-wrapper">
+      <div className='game-controls-wrapper'>
         <Controls
           move={() => null}
           onStartClickHandler={startNewGame}
