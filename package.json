@@ -5,17 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "exports": {
-    "./Minesweeper": "./games/Minesweeper/index.tsx",
-    "./Snake": "./games/Snake/index.tsx",
-    "./Tetris": "./games/Tetris/index.tsx"
-  },
   "type": "module",
   "keywords": [],
   "author": "John Ruane",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/johnruane/reactgames.git"
-  }
+  "license": "ISC"
 }
