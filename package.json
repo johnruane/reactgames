@@ -3,10 +3,16 @@
   "description": "A package with multiple games",
   "version": "1.0.0",
   "scripts": {
+    "copy-shared": "node ./scripts/copy-shared.js",
+    "build": "npm run copy-shared",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "type": "module",
   "keywords": [],
   "author": "John Ruane",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "fs-extra": "^11.2.0",
+    "path": "^0.12.7"
+  }
 }

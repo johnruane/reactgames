@@ -1,0 +1,91 @@
+:root {
+  --cell-sm: 1rem;
+  --cell-md: 2rem;
+  --cell-background-color: #161616;
+  --cell-outline-color: #454545;
+  --font-weight-bold: 700;
+  --color-black: #16261f;
+  --color-white: #fffafa;
+  --color-teal: #41ead4;
+  --font-size-sm: 0.75rem;
+  --font-size-md: 1.5rem;
+  --color-controls-red: #d82900;
+  --color-controls-yellow: #f7f945;
+}
+
+.overlay-text {
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  text-transform: uppercase;
+  background-color: rgba(0,0,0,0.8);
+  padding: 0.25rem 0.5rem;
+
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+  }
+}
+
+.overlay-text-wrapper {
+  color: var(--color-white);
+  white-space: nowrap;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.game-controls-wrapper {
+  align-self: end;
+  grid-column: 1 / -1;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+
+  @supports (padding: max(0px)) {
+    padding-bottom: max(1.5rem, env(safe-area-inset-left));
+  }
+
+  @media (pointer: coarse) and (hover: none) and (max-width: 1024px) {
+    opacity: 1;
+  }
+}
+
+.overlay-wrapper {
+  position: relative;
+  height: fit-content;
+}
+
+.game-side-details {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.controls-text {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+.controls-list {
+  font-size: var(--font-size-sm);
+  list-style: none;
+  padding: 0;
+
+  & li {
+    line-height: 1.5;
+  }
+}
+
+.controls-text-wrapper {
+  align-self: center;
+}
+
+.game-instructions {
+  color: var(--color-white);
+  margin-top: 1rem;
+}
+
+.game-list {
+  list-style: decimal-leading-zero;
+  list-style-position: inside;
+  padding: 0;
+}
