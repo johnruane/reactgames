@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import _cloneDeep from 'lodash/cloneDeep';
 
 import { Board, Controls, Panel } from './shared/components';
 
 import { create2dArray } from './shared/utils';
-import { useInterval, useMediaQuery } from './shared/utils/hooks';
+import { useInterval, useMediaQuery } from './shared/hooks';
 
 import { addSnakeToBoard, getRandomEmptyBoardPosition, growSnake } from './lib';
 
@@ -39,10 +39,10 @@ const Snake = ({
   const [snakeBody, setSnakeBody] = useState([1, 1, 1]);
   const [snakeHeadPosition, setSnakeHeadPosition] = useState({ r: 10, c: 10 });
   const [proposedSnakeDirection, setProposedSnakeDirection] = useState(
-    SNAKE_DIRECTIONS.ARROW_UP,
+    SNAKE_DIRECTIONS.ARROW_UP
   );
   const [currentSnakeDirection, setCurrentSnakeDirection] = useState(
-    SNAKE_DIRECTIONS.ARROW_UP,
+    SNAKE_DIRECTIONS.ARROW_UP
   );
 
   const [foodBoardPosition, setFoodBoardPosition] = useState({ r: 5, c: 5 });
@@ -169,9 +169,7 @@ const Snake = ({
    * the next food and updates the boards.
    */
   useEffect(() => {
-    if (
-      JSON.stringify(snakeHeadPosition) === JSON.stringify(foodBoardPosition)
-    ) {
+    if (JSON.stringify(snakeHeadPosition) === JSON.stringify(foodBoardPosition)) {
       const { row, col } = getRandomEmptyBoardPosition({ board: displayBoard });
       const newFoodBoard = create2dArray({
         numberOfRows: 15,
@@ -182,7 +180,6 @@ const Snake = ({
       newFoodBoard[row][col] = FOOD_VALUE;
       setFoodBoard(newFoodBoard);
       setFoodBoardPosition({ r: row, c: col });
-      // @ts-expect-error will never be null
       setScore(parseInt(score) + 1);
     }
   }, [displayBoard]);
@@ -224,23 +221,23 @@ const Snake = ({
 
   return (
     <>
-      <div className="gp-game-wrapper snake-game-wrapper">
-        <div className="snake-panel-wrapper">
+      <div className='gp-game-wrapper snake-game-wrapper'>
+        <div className='snake-panel-wrapper'>
           <Panel sections={[{ heading: 'score', value: score }]} />
         </div>
 
-        <div className="overlay-wrapper">
-          <Board board={displayBoard} className="snake-board" />
-          <div className="overlay-text-wrapper">
-            {gameOver && <p className="overlay-text">Game Over</p>}
+        <div className='overlay-wrapper'>
+          <Board board={displayBoard} className='snake-board' />
+          <div className='overlay-text-wrapper'>
+            {gameOver && <p className='overlay-text'>Game Over</p>}
           </div>
         </div>
       </div>
 
-      <div className="game-instructions">
-        <p className="panel-text panel-text-bold">Instructions</p>
+      <div className='game-instructions'>
+        <p className='panel-text panel-text-bold'>Instructions</p>
 
-        <ul className="panel-text game-list">
+        <ul className='panel-text game-list'>
           <li>Press START to begin the game or play again when GAME OVER.</li>
           <li>To quit and close, press QUIT.</li>
           {useMediaQuery('DESKTOP') ? (
@@ -255,7 +252,7 @@ const Snake = ({
         </ul>
       </div>
 
-      <div className="game-controls-wrapper">
+      <div className='game-controls-wrapper'>
         <Controls
           move={setProposedSnakeDirection}
           onStartClickHandler={startGame}

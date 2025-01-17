@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import Cell from './components/Cell';
 import { Board, Controls, Panel } from './shared/components';
 
 import { create2dArray } from './shared/utils';
-import { useInterval, useMediaQuery } from './shared/utils/hooks';
+import { useInterval, useMediaQuery } from './shared/hooks';
 
 import {
   depthFirstSearch,

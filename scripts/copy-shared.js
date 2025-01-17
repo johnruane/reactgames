@@ -9,9 +9,17 @@ const sharedDirectory = path.resolve(__dirname, '..', 'shared');
 
 async function copyShared() {
   try {
-    for (gameDir of gameDirectories) {
+    for (let gameDir of gameDirectories) {
       const destination = path.resolve(__dirname, '..', 'games', gameDir, 'shared');
-      await fse.copy(sharedDirectory, destination);
+
+      // Copy shared directory while excluding .test files
+      await fse.copy(sharedDirectory, destination, {
+        filter: (src) => {
+          // Exclude files that match .test.js or .test.ts patterns
+          return !/\.test\.(js|ts)$/.test(src);
+        },
+      });
+
       console.log(`Copied shared to /games/${gameDir}`);
     }
     console.log('Shared folder copied to all apps successfully.');
