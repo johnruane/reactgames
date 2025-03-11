@@ -97,11 +97,11 @@ const Minesweeper = ({
   };
 
   const startNewGame = useCallback(() => {
-    setGameKey((prev) => prev + 1);
+    setGameKey?.((prev) => prev + 1);
   }, [setGameKey]);
 
   const quitGame = useCallback(() => {
-    setToggleModal(false);
+    setToggleModal?.(false);
   }, [setToggleModal]);
 
   useEffect(() => {

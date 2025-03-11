@@ -7,15 +7,25 @@
     "build": "npm run copy-shared",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "John Ruane",
+  "keywords": [
+    "games",
+    "react",
+    "gameplay"
+  ],
+  "author": "John Ruane <john@example.com>",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnruane/reactgames.git"
+  },
   "dependencies": {
-    "fs-extra": "^11.2.0",
-    "path": "^0.12.7",
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
+    "fs-extra": "^11.2.0",
+    "path": "^0.12.7",
+    "@types/lodash": "^4.17.16",
     "@types/react": "^18.3.18"
   }
 }

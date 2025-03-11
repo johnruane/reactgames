@@ -180,7 +180,7 @@ const Snake = ({
       newFoodBoard[row][col] = FOOD_VALUE;
       setFoodBoard(newFoodBoard);
       setFoodBoardPosition({ r: row, c: col });
-      setScore(parseInt(score) + 1);
+      setScore(score + 1);
     }
   }, [displayBoard]);
 
@@ -256,7 +256,7 @@ const Snake = ({
         <Controls
           move={setProposedSnakeDirection}
           onStartClickHandler={startGame}
-          onQuitClickHandler={() => setToggleModal(false)}
+          onQuitClickHandler={() => setToggleModal?.(false)}
         />
       </div>
     </>

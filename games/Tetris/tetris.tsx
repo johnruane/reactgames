@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import _cloneDeep from 'lodash/cloneDeep';
 
@@ -104,8 +104,8 @@ const Tetris = ({
   };
 
   const quitGame = useCallback(() => {
-    setGameKey((prev) => prev + 1);
-    setToggleModal(false);
+    setGameKey?.((prev) => prev + 1);
+    setToggleModal?.(false);
   }, [setGameKey, setToggleModal]);
 
   /*
