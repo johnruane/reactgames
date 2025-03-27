@@ -1,4 +1,4 @@
-import { useMatchMedia } from '../../../shared/hooks';
+import { useMatchMedia } from '../../hooks';
 
 import './style.css';
 
