@@ -1,4 +1,4 @@
-import _isEqual from 'lodash/isEqual';
+import { isEqual } from 'lodash';
 
 /**
  * Takes @array and @obj and filters out @obj from @array using Lodash/isEqual deep comparison.
@@ -11,5 +11,5 @@ export const removeObjectFromArray = ({
   array: CellPosition[];
   obj: CellPosition;
 }) => {
-  return array.filter((item) => !_isEqual(item, obj));
+  return array.filter((item) => !isEqual(item, obj));
 };
