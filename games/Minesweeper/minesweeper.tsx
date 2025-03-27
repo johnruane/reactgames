@@ -4,7 +4,7 @@ import Cell from './components/Cell';
 import { Board, Controls, Panel } from './shared/components';
 
 import { create2dArray } from './shared/utils';
-import { useInterval, useMediaQuery } from './shared/hooks';
+import { useInterval, useMatchMedia } from './shared/hooks';
 
 import {
   depthFirstSearch,
@@ -257,7 +257,7 @@ const Minesweeper = ({
         <ul className='panel-text game-list'>
           <li>Press START to begin the game or play again when GAME OVER.</li>
           <li>To quit and close, press QUIT.</li>
-          {useMediaQuery('DESKTOP') ? (
+          {useMatchMedia('DESKTOP') ? (
             <>
               <li>Use the MOUSE to select a cell.</li>
               <li>LEFT-CLICK to reveal a cell.</li>

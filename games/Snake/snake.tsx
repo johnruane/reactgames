@@ -5,7 +5,7 @@ import _cloneDeep from 'lodash/cloneDeep';
 import { Board, Controls, Panel } from './shared/components';
 
 import { create2dArray } from './shared/utils';
-import { useInterval, useMediaQuery } from './shared/hooks';
+import { useInterval, useMatchMedia } from './shared/hooks';
 
 import { addSnakeToBoard, getRandomEmptyBoardPosition, growSnake } from './lib';
 
@@ -240,7 +240,7 @@ const Snake = ({
         <ul className='panel-text game-list'>
           <li>Press START to begin the game or play again when GAME OVER.</li>
           <li>To quit and close, press QUIT.</li>
-          {useMediaQuery('DESKTOP') ? (
+          {useMatchMedia('DESKTOP') ? (
             <>
               <li>Use the ARROW keys to move Left, Right, Up or Down.</li>
             </>

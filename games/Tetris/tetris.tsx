@@ -7,7 +7,7 @@ import Next from './components/Next';
 import { Board, Controls, Panel } from './shared/components';
 
 import { create2dArray } from './shared/utils';
-import { useInterval, useMediaQuery } from './shared/hooks';
+import { useInterval, useMatchMedia } from './shared/hooks';
 
 import {
   addTetrominoToBoard,
@@ -375,7 +375,7 @@ const Tetris = ({
         <ul className='panel-text game-list'>
           <li>Press START to begin the game or play again when GAME OVER.</li>
           <li>To quit and close, press QUIT.</li>
-          {useMediaQuery('DESKTOP') ? (
+          {useMatchMedia('DESKTOP') ? (
             <>
               <li>Use the ARROW keys to move Left, Right or Down.</li>
               <li>Press SPACE to rotate.</li>

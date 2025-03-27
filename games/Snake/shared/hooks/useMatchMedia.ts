@@ -1,6 +1,6 @@
 /**
  * Reference: https://usehooks-ts.com/react-hook/use-media-query
- * Usage: const matches = useMediaQuery('(min-width: 768px)')
+ * Usage: const matches = useMatchMedia('(min-width: 768px)')
  **/
 import { useEffect, useLayoutEffect, useState } from 'react';
 
