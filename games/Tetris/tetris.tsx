@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { _cloneDeep } from 'lodash-es/cloneDeep';
+import { cloneDeep } from 'lodash-es';
 
 import Next from './components/Next';
 import { Board, Controls, Panel } from './shared/components';
@@ -182,7 +182,7 @@ const Tetris = ({
     if (!canMove) {
       setStaticBoard(
         addTetrominoToBoard(
-          _cloneDeep(staticBoard),
+          cloneDeep(staticBoard),
           currentTetromino?.matrix,
           position.r,
           position.c
@@ -233,7 +233,7 @@ const Tetris = ({
    * function to be executed as a 'onFinish' function if the index is the last row to be animated.
    */
   useEffect(() => {
-    const cloneBoard = _cloneDeep(staticBoard);
+    const cloneBoard = cloneDeep(staticBoard);
 
     /*
      * We sort the indexes ascending so that rows are removed from top to bottom. If descending then the board
@@ -307,7 +307,7 @@ const Tetris = ({
   useEffect(() => {
     setDisplayBoard(
       addTetrominoToBoard(
-        _cloneDeep(staticBoard),
+        cloneDeep(staticBoard),
         currentTetromino?.matrix,
         position.r,
         position.c

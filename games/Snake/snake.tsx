@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { _cloneDeep } from 'lodash-es/cloneDeep';
-
+import { cloneDeep } from 'lodash-es';
 import { Board, Controls, Panel } from './shared/components';
 
 import { create2dArray } from './shared/utils';
@@ -31,10 +30,10 @@ const Snake = ({
     numberOfColumns: 15,
     fillValue: 0,
   });
-  const initialFoodBoard = _cloneDeep(emptyBoard);
+  const initialFoodBoard = cloneDeep(emptyBoard);
   initialFoodBoard[5][5] = FOOD_VALUE;
 
-  const [displayBoard, setDisplayBoard] = useState(_cloneDeep(emptyBoard));
+  const [displayBoard, setDisplayBoard] = useState(cloneDeep(emptyBoard));
 
   const [snakeBody, setSnakeBody] = useState([1, 1, 1]);
   const [snakeHeadPosition, setSnakeHeadPosition] = useState({ r: 10, c: 10 });
@@ -132,7 +131,7 @@ const Snake = ({
        * The snakeBody follows the head by unshifting the values in the array so they propogate
        * from the front of the array to the back.
        */
-      const newSnake = _cloneDeep(snakeBody);
+      const newSnake = cloneDeep(snakeBody);
       newSnake.unshift(snakeBodyDirection);
       newSnake.pop();
 
@@ -198,7 +197,7 @@ const Snake = ({
    */
   useEffect(() => {
     const snakeBoard = addSnakeToBoard({
-      board: _cloneDeep(foodBoard),
+      board: cloneDeep(foodBoard),
       snake: snakeBody,
       pos: snakeHeadPosition,
     });
