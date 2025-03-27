@@ -1,5 +1,5 @@
-import _isEqual from 'lodash-es/isEqual';
-import _some from 'lodash-es/some';
+import _isEqual from 'lodash/isEqual';
+import _some from 'lodash/some';
 
 /**
  * Helper function to find and object @obj in @array
