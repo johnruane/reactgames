@@ -1,4 +1,4 @@
-import _isEqual from 'lodash/isEqual';
+import { isEqual } from 'lodash';
 
 /**
  * Helper function to find and object @obj in Set @set This is due to object comparison and equality of reference
@@ -13,7 +13,7 @@ export const isObjectInSet = ({
   obj: CellPosition;
 }): boolean => {
   for (const item of set) {
-    if (_isEqual(item, obj)) {
+    if (isEqual(item, obj)) {
       return true;
     }
   }
