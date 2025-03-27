@@ -19,8 +19,8 @@
     "url": "git+https://github.com/johnruane/reactgames.git"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "lodash-es": "^4.17.21"
+    "lodash": "^4.17.21",
+    "react": "^18.2.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.17.16",
