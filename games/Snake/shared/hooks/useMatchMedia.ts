@@ -15,7 +15,7 @@ enum MEDIA_QUERY_LIST {
 export const useIsomorphicLayoutEffect =
   typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
-const useMediaQuery = (
+export const useMatchMedia = (
   query: string,
   {
     defaultValue = false,
@@ -23,7 +23,7 @@ const useMediaQuery = (
   }: {
     defaultValue?: boolean;
     initializeWithValue?: boolean;
-  } = {},
+  } = {}
 ): boolean => {
   const getMatches = (query: string): boolean => {
     if (typeof window === 'undefined') {
@@ -68,5 +68,3 @@ const useMediaQuery = (
 
   return matches;
 };
-
-export default useMediaQuery;

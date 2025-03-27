@@ -1,2 +1,2 @@
 export { useInterval } from './useInterval';
-export { default as useMediaQuery } from './useMatchMedia';
+export { useMatchMedia } from './useMatchMedia';

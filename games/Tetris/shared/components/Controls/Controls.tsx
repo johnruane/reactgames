@@ -1,4 +1,4 @@
-import { useMediaQuery } from '../../../shared/hooks';
+import { useMatchMedia } from '../../../shared/hooks';
 
 import './style.css';
 
@@ -11,7 +11,7 @@ export default function Controls({
   onStartClickHandler: () => void;
   onQuitClickHandler: () => void;
 }) {
-  const isDesktop = useMediaQuery('DESKTOP');
+  const isDesktop = useMatchMedia('DESKTOP');
 
   return (
     <div className='game-controls'>
