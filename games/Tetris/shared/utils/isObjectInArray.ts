@@ -1,5 +1,4 @@
-import _isEqual from 'lodash/isEqual';
-import _some from 'lodash/some';
+import { isEqual, some } from 'lodash';
 
 /**
  * Helper function to find and object @obj in @array
@@ -12,5 +11,5 @@ export const isObjectInArray = ({
   array: CellPosition[];
   obj: CellPosition;
 }) => {
-  return _some(array, (cell) => _isEqual(cell, obj));
+  return some(array, (cell) => isEqual(cell, obj));
 };
