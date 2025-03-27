@@ -1,4 +1,4 @@
-import _isEqual from 'lodash-es';
+import _isEqual from 'lodash/isEqual';
 
 /**
  * Takes @array and @obj and filters out @obj from @array using Lodash/isEqual deep comparison.
