@@ -1,4 +1,4 @@
-import _cloneDeep from 'lodash/cloneDeep';
+import { _cloneDeep } from 'lodash-es/cloneDeep';
 
 /**
  * Takes @board and for each index in @indexes removes the row and adds a new one at the top of the @board

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import _cloneDeep from 'lodash/cloneDeep';
+import { _cloneDeep } from 'lodash-es/cloneDeep';
 
 import { Board, Controls, Panel } from './shared/components';
 

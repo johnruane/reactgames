@@ -1,4 +1,4 @@
-import _isEqual from 'lodash/isEqual';
+import { _isEqual } from 'lodash-es/isEqual';
 
 /**
  * Helper function to find and object @obj in Set @set This is due to object comparison and equality of reference

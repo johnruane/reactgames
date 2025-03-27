@@ -2,7 +2,7 @@
  * Takes @board and @emptyCellValue and for each cell in @board compares it's value to @emptyCellValue and if it
  * is a match proceeds to count the number of mines (9) that cell is touching.
  */
-import _cloneDeep from 'lodash/cloneDeep';
+import { _cloneDeep } from 'lodash-es/cloneDeep';
 
 export const generateCluesBoard = ({
   board,

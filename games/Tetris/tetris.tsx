@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import _cloneDeep from 'lodash/cloneDeep';
+import { _cloneDeep } from 'lodash-es/cloneDeep';
 
 import Next from './components/Next';
 import { Board, Controls, Panel } from './shared/components';
