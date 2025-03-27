@@ -1,4 +1,4 @@
-import { isEqual, some } from 'lodash';
+import { isEqual, some } from 'lodash-es';
 
 /**
  * Helper function to find and object @obj in @array
