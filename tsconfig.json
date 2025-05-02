@@ -27,5 +27,5 @@
     "paths": {}
   },
   "include": ["games", "global.d.ts", "**/*.tsx"],
-  "exclude": ["**/*.test.ts"]
+  "exclude": ["**/*.test.ts", "node_modules"]
 }
