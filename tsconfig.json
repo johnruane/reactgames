@@ -24,7 +24,7 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": false,
     "types": [],
-    "paths": {}
+    "paths": { "@context/*": ["utils/context/*"] }
   },
   "include": ["games", "global.d.ts", "**/*.tsx"],
   "exclude": ["**/*.test.ts", "node_modules"]

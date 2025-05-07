@@ -7,7 +7,7 @@ import { findNeighbourCells } from './findNeighbourCells';
 import { findNumberedNeighbours } from './findNumberedNeighbours';
 import { getCellValue } from './getCellValue';
 
-import { isObjectInSet } from '../../../shared/utils/isObjectInSet';
+import { isObjectInSet } from '../../../utils/isObjectInSet';
 
 export const depthFirstSearch = ({
   board,

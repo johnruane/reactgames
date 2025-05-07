@@ -1,6 +1,5 @@
 import { useContext } from 'react';
-import { ModalContext } from '../../context/ModalContext';
-import { GameControlContext } from '../../context/ModalContext';
+import { GameControlContext } from '@context/ModalContext';
 
 import './style.css';
 
@@ -13,7 +12,7 @@ export default function Controls({
   onStartClickHandler: () => void;
   onQuitClickHandler: () => void;
 }) {
-  const { setToggleModal, setGameKey } = useContext(ModalContext);
+  const { startNewGame, quitGame } = useContext(GameControlContext);
 
   return (
     <div className='game-controls'>
@@ -47,7 +46,7 @@ export default function Controls({
             <p className='game-controls-button-text'>START</p>
             <button
               className='button-reset game-controls-button'
-              onClick={onStartClickHandler}
+              onClick={startNewGame}
               aria-label='Start game'
             />
           </span>
@@ -55,7 +54,7 @@ export default function Controls({
             <p className='game-controls-button-text'>QUIT</p>
             <button
               className='button-reset game-controls-button'
-              onClick={onQuitClickHandler}
+              onClick={quitGame}
               aria-label='Quit game'
             />
           </span>
