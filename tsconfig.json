@@ -23,8 +23,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": false,
-    "types": [],
-    "paths": { "@context/*": ["utils/context/*"] }
+    "types": []
   },
   "include": ["games", "global.d.ts", "**/*.tsx"],
   "exclude": ["**/*.test.ts", "node_modules"]

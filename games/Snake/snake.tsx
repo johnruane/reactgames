@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { cloneDeep } from 'lodash-es';
-import { Board, Controls, Panel } from './shared/components';
+import { Board, Panel } from './shared/components';
 
 import { create2dArray } from './shared/utils';
 import { useInterval, useMatchMedia } from './shared/hooks';
