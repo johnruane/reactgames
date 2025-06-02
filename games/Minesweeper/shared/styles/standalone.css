@@ -1,3 +1,8 @@
+/*
+  This file is used to style the standalone version of the games.
+  It is used to style the games when they are not embedded in a web page.
+*/
+
 html {
   background-color: #2978a0;
   font-family: Arial, Helvetica, sans-serif;

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { cloneDeep } from 'lodash-es';
 
 import Next from './components/Next';
-import { Board, Panel } from './shared/components';
+import { Board, Controls, Panel, Instructions } from './shared/components';
 
 import { create2dArray } from './shared/utils';
 import { useInterval, useMatchMedia } from './shared/hooks';
@@ -51,10 +51,10 @@ const boardConfig = {
 };
 
 const Tetris = ({
-  setGameKey,
+  startNewGame,
   setToggleModal,
 }: {
-  setGameKey?: React.Dispatch<React.SetStateAction<number>>;
+  startNewGame?: () => void;
   setToggleModal?: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [position, setPosition] = useState({ r: 0, c: 4 });
@@ -104,9 +104,8 @@ const Tetris = ({
   };
 
   const quitGame = useCallback(() => {
-    setGameKey?.((prev) => prev + 1);
     setToggleModal?.(false);
-  }, [setGameKey, setToggleModal]);
+  }, [setToggleModal]);
 
   /*
    * Setting these two intervals to 'null' stops the useInterval hook from executing and effectively
@@ -359,6 +358,11 @@ const Tetris = ({
           <Board board={displayBoard} className='tetris' />
           <div className='overlay-text-wrapper'>
             {gameOver && <p className='overlay-text'>Game Over</p>}
+            {!hasGameStarted && (
+              <button className='overlay-button' onClick={startGame}>
+                {gameOver ? 'Play Again' : 'Play Game'}
+              </button>
+            )}
           </div>
         </div>
 
@@ -373,8 +377,7 @@ const Tetris = ({
         <p className='panel-text panel-text-bold'>Instructions</p>
 
         <ul className='panel-text game-list'>
-          <li>Press START to begin the game or play again when GAME OVER.</li>
-          <li>To quit and close, press QUIT.</li>
+          <Instructions />
           {useMatchMedia('DESKTOP') ? (
             <>
               <li>Use the ARROW keys to move Left, Right or Down.</li>
@@ -392,7 +395,7 @@ const Tetris = ({
       <div className='game-controls-wrapper'>
         <Controls
           move={move}
-          onStartClickHandler={startGame}
+          onStartClickHandler={startNewGame!}
           onQuitClickHandler={quitGame}
         />
       </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { cloneDeep } from 'lodash-es';
-import { Board, Panel } from './shared/components';
+import { Board, Controls, Panel, Instructions } from './shared/components';
 
 import { create2dArray } from './shared/utils';
 import { useInterval, useMatchMedia } from './shared/hooks';
@@ -21,8 +21,10 @@ const SNAKE_DIRECTIONS = {
 const FOOD_VALUE = 2;
 
 const Snake = ({
+  startNewGame,
   setToggleModal,
 }: {
+  startNewGame?: () => void;
   setToggleModal?: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const emptyBoard = create2dArray({
@@ -229,6 +231,11 @@ const Snake = ({
           <Board board={displayBoard} className='snake-board' />
           <div className='overlay-text-wrapper'>
             {gameOver && <p className='overlay-text'>Game Over</p>}
+            {!hasGameStarted && (
+              <button className='overlay-button' onClick={startGame}>
+                {gameOver ? 'Play Again' : 'Play Game'}
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -237,16 +244,11 @@ const Snake = ({
         <p className='panel-text panel-text-bold'>Instructions</p>
 
         <ul className='panel-text game-list'>
-          <li>Press START to begin the game or play again when GAME OVER.</li>
-          <li>To quit and close, press QUIT.</li>
+          <Instructions />
           {useMatchMedia('DESKTOP') ? (
-            <>
-              <li>Use the ARROW keys to move Left, Right, Up or Down.</li>
-            </>
+            <li>Use the ARROW keys to move Left, Right, Up or Down.</li>
           ) : (
-            <>
-              <li>Use the D-PAD to move Left, Right, Up or Down.</li>
-            </>
+            <li>Use the D-PAD to move Left, Right, Up or Down.</li>
           )}
         </ul>
       </div>
@@ -254,7 +256,7 @@ const Snake = ({
       <div className='game-controls-wrapper'>
         <Controls
           move={setProposedSnakeDirection}
-          onStartClickHandler={startGame}
+          onStartClickHandler={startNewGame!}
           onQuitClickHandler={() => setToggleModal?.(false)}
         />
       </div>

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import Cell from './components/Cell';
-import { Board, Panel } from './shared/components';
+import { Board, Controls, Panel, Instructions } from './shared/components';
 
 import { create2dArray } from './shared/utils';
 import { useInterval, useMatchMedia } from './shared/hooks';
@@ -255,8 +255,7 @@ const Minesweeper = ({
         <p className='panel-text panel-text-bold'>Instructions</p>
 
         <ul className='panel-text game-list'>
-          <li>Press START to begin the game or play again when GAME OVER.</li>
-          <li>To quit and close, press QUIT.</li>
+          <Instructions />
           {useMatchMedia('DESKTOP') ? (
             <>
               <li>Use the MOUSE to select a cell.</li>
