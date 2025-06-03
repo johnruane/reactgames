@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { cloneDeep } from 'lodash-es';
-import { Board, Controls, Panel, Instructions } from './shared/components';
+import { Board, Controls, Panel, Instructions, GameOverlay } from './shared/components';
 
 import { create2dArray } from './shared/utils';
 import { useInterval, useMatchMedia } from './shared/hooks';
@@ -20,13 +20,7 @@ const SNAKE_DIRECTIONS = {
 
 const FOOD_VALUE = 2;
 
-const Snake = ({
-  startNewGame,
-  setToggleModal,
-}: {
-  startNewGame?: () => void;
-  setToggleModal?: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+const Snake = ({ setRestartGame }: { setRestartGame?: () => void }) => {
   const emptyBoard = create2dArray({
     numberOfRows: 15,
     numberOfColumns: 15,
@@ -229,14 +223,11 @@ const Snake = ({
 
         <div className='overlay-wrapper'>
           <Board board={displayBoard} className='snake-board' />
-          <div className='overlay-text-wrapper'>
-            {gameOver && <p className='overlay-text'>Game Over</p>}
-            {!hasGameStarted && (
-              <button className='overlay-button' onClick={startGame}>
-                {gameOver ? 'Play Again' : 'Play Game'}
-              </button>
-            )}
-          </div>
+          <GameOverlay
+            showGameOver={gameOver}
+            showGameOverButton={!hasGameStarted}
+            gameOverButtonAction={startGame}
+          />
         </div>
       </div>
 
@@ -256,8 +247,7 @@ const Snake = ({
       <div className='game-controls-wrapper'>
         <Controls
           move={setProposedSnakeDirection}
-          onStartClickHandler={startNewGame!}
-          onQuitClickHandler={() => setToggleModal?.(false)}
+          onStartClickHandler={setRestartGame!}
         />
       </div>
     </>

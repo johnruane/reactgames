@@ -23,13 +23,7 @@ import './styles/style.css';
 const GAME_WIN = 'win';
 const GAME_LOSE = 'lose';
 
-const Minesweeper = ({
-  setGameKey,
-  setToggleModal,
-}: {
-  setGameKey?: React.Dispatch<React.SetStateAction<number>>;
-  setToggleModal?: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+const Minesweeper = ({ setRestartGame }: { setRestartGame?: () => void }) => {
   const boardRef = useRef<HTMLDivElement>(null);
 
   const numberOfMines = 10;
@@ -96,14 +90,6 @@ const Minesweeper = ({
     }
   };
 
-  const startNewGame = useCallback(() => {
-    setGameKey?.((prev) => prev + 1);
-  }, [setGameKey]);
-
-  const quitGame = useCallback(() => {
-    setToggleModal?.(false);
-  }, [setToggleModal]);
-
   useEffect(() => {
     gameOverRef.current = gameOver;
   }, [gameOver]);
@@ -157,10 +143,9 @@ const Minesweeper = ({
     // Used to start the clock timer
     if (gameOver !== '') {
       setHasGameStarted(false);
-    }
 
-    if (gameOver === GAME_LOSE) {
       const cellsToUpdate = findAllMinePositions({ board: mineBoard });
+      // Reveal the last hidden cell somehow
       setDisplayBoard((prev) => {
         const newBoard = updateDisplayBoard({
           displayBoard: prev,
@@ -243,9 +228,14 @@ const Minesweeper = ({
           />
           <div className='overlay-text-wrapper'>
             {gameOver && (
-              <p className='overlay-text'>
-                {gameOver === 'win' ? 'You win!' : 'You Lose'}
-              </p>
+              <>
+                <p className='overlay-text'>
+                  {gameOver === 'win' ? 'You win!' : 'You Lose'}
+                </p>
+                <button className='overlay-button' onClick={setRestartGame}>
+                  Play Again?
+                </button>
+              </>
             )}
           </div>
         </div>
@@ -273,11 +263,7 @@ const Minesweeper = ({
       </div>
 
       <div className='game-controls-wrapper'>
-        <Controls
-          move={() => null}
-          onStartClickHandler={startNewGame}
-          onQuitClickHandler={quitGame}
-        />
+        <Controls move={() => null} onStartClickHandler={setRestartGame!} />
       </div>
     </>
   );

@@ -7,7 +7,7 @@ export default function Controls({
 }: Readonly<{
   move: (unknown: string) => void;
   onStartClickHandler: () => void;
-  onQuitClickHandler: () => void;
+  onQuitClickHandle?: () => void;
 }>) {
   return (
     <div className='game-controls'>
