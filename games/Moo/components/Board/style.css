@@ -1,0 +1,44 @@
+.moo-board [class*=guess-cell],
+.moo-board [class*=guess-cell]::after {
+  width: var(--cell-md);
+  height: var(--cell-md);
+}
+
+.moo-row {
+  display: grid;
+  grid-template-areas:    
+  'one two three four g1 g2'
+  'one two three four g3 g4';
+}
+
+.guess-cell-1 {
+  grid-area: one;
+}
+
+.guess-cell-2 {
+  grid-area: two;
+}
+
+.guess-cell-3 {
+  grid-area: three;
+}
+
+.guess-cell-4 {
+  grid-area: four;
+}
+
+.result-cell-1 {
+  grid-area: g1;
+}
+
+.result-cell-2 {
+  grid-area: g2;
+}
+
+.result-cell-3 {
+  grid-area: g3;
+}
+
+.result-cell-4 {
+  grid-area: g4;
+}

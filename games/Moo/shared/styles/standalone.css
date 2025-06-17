@@ -1,0 +1,47 @@
+/*
+  This file is used to style the standalone version of the games.
+  It is used to style the games when they are not embedded in a web page.
+*/
+
+html {
+  background-color: #2978a0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  display: grid;
+  row-gap: 1rem;
+}
+
+.button {
+  all: unset;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--color-white);
+  background-color: var(--color-black);
+  border-radius: 10rem;
+  user-select: none;
+  width: fit-content;
+  padding: 1rem 3rem;
+  user-select: none;
+  touch-action: manipulation;
+
+  & span {
+    color: var(--color-white);
+    font-weight: var(--font-weight-bold);
+    font-size: 1rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.button-reset {
+  all: unset;
+  border: none;
+  width: unset;
+  background-color: unset;
+}

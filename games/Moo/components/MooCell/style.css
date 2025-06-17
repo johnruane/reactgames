@@ -1,0 +1,14 @@
+[class*='guess-cell-'] {
+  &[data-value='1']::after {
+    background-color: red;
+  }
+  &[data-value='2']::after {
+    background-color: blue;
+  }
+  &[data-value='3']::after {
+    background-color: green;
+  }
+  &[data-value='4']::after {
+    background-color: purple;
+  }
+}

@@ -4,7 +4,7 @@ const fse = require('fs-extra');
 /*
  * Update gameDirectories to include further games that required the shared directory
  */
-const gameDirectories = ['Tetris', 'Snake', 'Minesweeper'];
+const gameDirectories = ['Tetris', 'Snake', 'Minesweeper', 'Moo'];
 const sharedDirectory = path.resolve(__dirname, '..', 'shared');
 
 async function copyShared() {
