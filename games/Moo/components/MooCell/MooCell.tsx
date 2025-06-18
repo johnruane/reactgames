@@ -3,28 +3,28 @@ import classNames from 'classnames';
 
 import './style.css';
 
-const MooCell = ({ index, additionalClasses }) => {
-  const [cellValue, setCellValue] = useState(0);
-  const cellRef = useRef(null);
-
-  function handleCellClick() {
-    if (cellRef.current! < 4) {
-      setCellValue((prev) => prev + 1);
-    } else {
-      setCellValue(1);
-    }
-  }
-
-  useEffect(() => {
-    cellRef.current = cellValue;
-  }, [cellValue]);
-
+const MooCell = ({
+  dataRow,
+  dataCell,
+  dataValue,
+  disable,
+  onClickHandler,
+  additionalClasses,
+}: {
+  dataRow?: number;
+  dataCell?: number;
+  dataValue?: number;
+  onClickHandler?: (e: React.MouseEvent<HTMLSpanElement>) => void;
+  additionalClasses?: string;
+  disable?: boolean;
+}) => {
   return (
     <span
-      key={`guess-cell-${index}`}
       className={classNames(`board-cell`, additionalClasses)}
-      data-value={cellValue}
-      onClick={handleCellClick}
+      data-row={dataRow}
+      data-cell={dataCell}
+      data-value={String(dataValue)}
+      onClick={!disable ? onClickHandler : undefined}
     />
   );
 };

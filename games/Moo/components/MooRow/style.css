@@ -1,14 +1,8 @@
-.moo-board [class*=guess-cell],
-.moo-board [class*=guess-cell]::after {
-  width: var(--cell-md);
-  height: var(--cell-md);
-}
-
 .moo-row {
   display: grid;
   grid-template-areas:    
-  'one two three four g1 g2'
-  'one two three four g3 g4';
+  'one two three four g1 g2 button'
+  'one two three four g3 g4 button';
 }
 
 .guess-cell-1 {
@@ -41,4 +35,13 @@
 
 .result-cell-4 {
   grid-area: g4;
+}
+
+.moo-go-button {
+  grid-area: button;
+}
+
+.hide {
+  visibility: hidden;
+  opacity: 0;
 }
