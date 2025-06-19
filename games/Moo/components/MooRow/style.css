@@ -21,6 +21,12 @@
   grid-area: four;
 }
 
+.moo-row [class*='result-cell-'], 
+.moo-row [class*='result-cell-']::after {
+  width: 1rem;
+  height: 1rem;
+}
+
 .result-cell-1 {
   grid-area: g1;
 }

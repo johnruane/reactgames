@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Instructions } from './shared/components';
 import MooBoard from './components/MooBoard';
+
+import generateSecretCode from './lib/generateSecretCode';
 
 import './shared/styles/global.css';
 import './styles/style.css';
@@ -10,7 +12,13 @@ const Snake = ({ setRestartGame }: { setRestartGame?: () => void }) => {
   const [gameOver, setGameOver] = useState(false);
   const [hasGameStarted, setHasGameStarted] = useState(false);
 
+  const [secretCode, setSecretCode] = useState([0, 0, 0, 0]);
   const [activeRow, setActiveRow] = useState(0);
+
+  useEffect(() => {
+    const secretNumber = generateSecretCode();
+    setSecretCode(secretNumber);
+  }, []);
 
   // const keyPress = (event) => {
   //   event.preventDefault();
@@ -66,13 +74,18 @@ const Snake = ({ setRestartGame }: { setRestartGame?: () => void }) => {
           <Panel sections={[{ heading: 'score', value: score }]} />
         </div> */}
 
-        <div className='overlay-wrapper'>
+        <div className='overlay-wrapper' data-stack='default'>
           <MooBoard numberOfRows={10} className='moo-board' activeRow={activeRow} />
           {/* <GameOverlay
             showGameOver={gameOver}
             showGameOverButton={!hasGameStarted}
             // gameOverButtonAction={startGame}
           /> */}
+          <div className='answer-row'>
+            {Array.from(secretCode).map((value) => (
+              <span className='answer-row-cell' data-value={value}></span>
+            ))}
+          </div>
         </div>
       </div>
 

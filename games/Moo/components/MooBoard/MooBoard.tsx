@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 
 import MooRow from '../MooRow';
-import MooCell from '../MooCell';
 
 import './style.css';
 

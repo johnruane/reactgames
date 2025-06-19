@@ -12,7 +12,7 @@ const MooRow = ({ rowIndex, activeRow, additionalClasses }) => {
     const cellIndex = Number(e.currentTarget.getAttribute('data-cell'));
     const newCellValues = Array.from(rowValues);
 
-    newCellValues[cellIndex] = rowValues[cellIndex] < 4 ? rowValues[cellIndex] + 1 : 1;
+    newCellValues[cellIndex] = rowValues[cellIndex] < 6 ? rowValues[cellIndex] + 1 : 1;
     setRowValues(newCellValues);
   }
 

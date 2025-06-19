@@ -10,7 +10,7 @@
   background: var(--cell-background-color);
   outline: 1px solid var(--cell-outline-color);
 
-  @include media('>=tablet') {
+  @media (min-width: 768px) {
     width: var(--cell-md);
     height: var(--cell-md);
   }

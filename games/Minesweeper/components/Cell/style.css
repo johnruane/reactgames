@@ -44,7 +44,7 @@
       height: 1.5rem;
     }
 
-    @include media('>=tablet') {
+    @media (min-width: 768px) {
       width: 2.5rem;
       height: 2.5rem;
 
