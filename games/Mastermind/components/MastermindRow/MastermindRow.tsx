@@ -1,11 +1,15 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useContext } from 'react';
 import classNames from 'classnames';
 
-import MooCell from '../MooCell';
+import MastermindContext from '../../context/MastermindContext';
+
+import MastermindCell from '../MastermindCell';
 
 import './style.css';
 
-const MooRow = ({ rowIndex, activeRow, additionalClasses }) => {
+const MastermindRow = ({ rowIndex, activeRow, additionalClasses }) => {
+  const secretCode = useContext(MastermindContext);
+
   const [rowValues, setRowValues] = useState<number[]>([0, 0, 0, 0]);
 
   function handleCellClick(e: React.MouseEvent<HTMLSpanElement>) {
@@ -17,9 +21,13 @@ const MooRow = ({ rowIndex, activeRow, additionalClasses }) => {
   }
 
   return (
-    <div key={`moo-row-${rowIndex}`} className='moo-row' data-row={`moo-row-${rowIndex}`}>
+    <div
+      key={`mastermind-row-${rowIndex}`}
+      className='mastermind-row'
+      data-row={`mastermind-row-${rowIndex}`}
+    >
       {Array.from({ length: 4 }).map((_, index) => (
-        <MooCell
+        <MastermindCell
           key={`guess-cell-${rowIndex}-${index}`}
           dataRow={rowIndex}
           dataCell={index}
@@ -31,14 +39,16 @@ const MooRow = ({ rowIndex, activeRow, additionalClasses }) => {
       ))}
 
       {Array.from({ length: 4 }).map((_, index) => (
-        <MooCell
+        <MastermindCell
           key={`result-cell-${rowIndex}-${index}`}
           additionalClasses={`result-cell-${index + 1}`}
         />
       ))}
 
       <button
-        className={classNames('moo-go-button', { ['hide']: rowIndex !== activeRow })}
+        className={classNames('mastermind-go-button', {
+          ['hide']: rowIndex !== activeRow,
+        })}
       >
         Go!
       </button>
@@ -46,4 +56,4 @@ const MooRow = ({ rowIndex, activeRow, additionalClasses }) => {
   );
 };
 
-export default MooRow;
+export default MastermindRow;

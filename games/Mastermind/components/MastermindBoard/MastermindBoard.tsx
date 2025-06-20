@@ -1,10 +1,10 @@
 import classNames from 'classnames';
 
-import MooRow from '../MooRow';
+import MastermindRow from '../MastermindRow';
 
 import './style.css';
 
-const MooBoard = ({
+const MastermindBoard = ({
   numberOfRows,
   className,
   activeRow,
@@ -14,12 +14,12 @@ const MooBoard = ({
   activeRow: number;
 }) => {
   return (
-    <div className={classNames('moo-board', className)}>
+    <div className={classNames('mastermind-board', className)}>
       {Array.from({ length: numberOfRows }).map((_, index) => (
-        <MooRow rowIndex={index} activeRow={activeRow} />
+        <MastermindRow rowIndex={index} activeRow={activeRow} />
       ))}
     </div>
   );
 };
 
-export default MooBoard;
+export default MastermindBoard;

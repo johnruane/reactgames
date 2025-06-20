@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
+import MastermindContext from './context/MastermindContext';
+
 import { Instructions } from './shared/components';
-import MooBoard from './components/MooBoard';
+import MastermindBoard from './components/MastermindBoard';
 
 import generateSecretCode from './lib/generateSecretCode';
 
@@ -75,7 +77,13 @@ const Snake = ({ setRestartGame }: { setRestartGame?: () => void }) => {
         </div> */}
 
         <div className='overlay-wrapper' data-stack='default'>
-          <MooBoard numberOfRows={10} className='moo-board' activeRow={activeRow} />
+          <MastermindContext.Provider value={secretCode}>
+            <MastermindBoard
+              numberOfRows={10}
+              className='mastermind-board'
+              activeRow={activeRow}
+            />
+          </MastermindContext.Provider>
           {/* <GameOverlay
             showGameOver={gameOver}
             showGameOverButton={!hasGameStarted}

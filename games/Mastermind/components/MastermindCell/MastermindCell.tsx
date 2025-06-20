@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import './style.css';
 
-const MooCell = ({
+const MastermindCell = ({
   dataRow,
   dataCell,
   dataValue,
@@ -29,4 +29,4 @@ const MooCell = ({
   );
 };
 
-export default MooCell;
+export default MastermindCell;
