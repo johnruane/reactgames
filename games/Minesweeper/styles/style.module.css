@@ -1,0 +1,20 @@
+.game-wrapper {
+  display: grid;
+  grid-template-columns: minmax(auto, 1fr) auto;
+  margin: 0 auto;
+  gap: 1rem;
+  color: var(--color-white);
+}
+
+.panel-wrapper {
+  display: grid;
+  grid-template-rows: min-content auto;
+  gap: 0.5rem;
+}
+
+.emoji {
+  display: block;
+  text-align: center;
+  font-size: var(--font-size-md);
+  background-color: transparent;
+}

@@ -1,9 +1,8 @@
-import { useRef, useState, useContext } from 'react';
-import classNames from 'classnames';
+import { useContext, useRef, useState } from 'react';
 
 import MastermindContext from '../../context/MastermindContext';
-
 import MastermindCell from '../MastermindCell';
+import classNames from 'classnames';
 
 import styles from './style.module.css';
 
@@ -16,7 +15,8 @@ const MastermindRow = ({ rowIndex, activeRow, additionalClasses }) => {
     const cellIndex = Number(e.currentTarget.getAttribute('data-cell'));
     const newCellValues = Array.from(rowValues);
 
-    newCellValues[cellIndex] = rowValues[cellIndex] < 6 ? rowValues[cellIndex] + 1 : 1;
+    newCellValues[cellIndex] =
+      rowValues[cellIndex] < 6 ? rowValues[cellIndex] + 1 : 1;
     setRowValues(newCellValues);
   }
 
@@ -32,7 +32,7 @@ const MastermindRow = ({ rowIndex, activeRow, additionalClasses }) => {
           dataRow={rowIndex}
           dataCell={index}
           dataValue={rowValues[index]}
-          additionalClasses={`guess-cell-${index + 1}`}
+          additionalClasses={styles[`guess-cell-${index + 1}`]}
           onClickHandler={handleCellClick}
           disable={rowIndex !== activeRow}
         />
@@ -41,7 +41,7 @@ const MastermindRow = ({ rowIndex, activeRow, additionalClasses }) => {
       {Array.from({ length: 4 }).map((_, index) => (
         <MastermindCell
           key={`result-cell-${rowIndex}-${index}`}
-          additionalClasses={`result-cell-${index + 1}`}
+          additionalClasses={styles[`result-cell-${index + 1}`]}
         />
       ))}
 

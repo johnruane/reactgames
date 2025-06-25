@@ -1,5 +1,7 @@
 import { memo, useCallback, useEffect, useRef } from 'react';
 
+import classNames from 'classnames';
+
 import styles from './style.module.css';
 
 const Cell = memo(function Cell({
@@ -20,7 +22,7 @@ const Cell = memo(function Cell({
         onClickCellCallback(e);
       }
     },
-    [onClickCellCallback]
+    [onClickCellCallback],
   );
 
   useEffect(() => {
@@ -31,14 +33,17 @@ const Cell = memo(function Cell({
     (currentRef as unknown as HTMLElement)?.addEventListener('click', onClick);
 
     return () => {
-      (currentRef as unknown as HTMLElement)?.removeEventListener('click', onClick);
+      (currentRef as unknown as HTMLElement)?.removeEventListener(
+        'click',
+        onClick,
+      );
     };
   }, [onClick, onClickCellCallback]);
 
   return (
     <div
       ref={cellRef}
-      className={`${styles['board-cell']} ${styles['mine-cell']}`}
+      className={classNames('board-cell', styles['cell'])}
       data-reveal={false}
       data-value={value}
       data-pos={pos}

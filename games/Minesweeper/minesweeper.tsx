@@ -1,10 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
+import { useInterval, useMatchMedia } from './shared/hooks';
+import classNames from 'classnames';
+
 import Cell from './components/Cell';
-import { Board, Controls, Panel, Instructions } from './shared/components';
+import { Board, Controls, Instructions, Panel } from './shared/components';
 
 import { create2dArray } from './shared/utils';
-import { useInterval, useMatchMedia } from './shared/hooks';
 
 import {
   depthFirstSearch,
@@ -18,7 +20,7 @@ import {
 } from './lib';
 
 import './shared/styles/global.css';
-import './styles/style.css';
+import style from './styles/style.module.css';
 
 const GAME_WIN = 'win';
 const GAME_LOSE = 'lose';
@@ -39,7 +41,7 @@ const Minesweeper = ({ setRestartGame }: { setRestartGame?: () => void }) => {
   });
 
   const cluesBoardRef = useRef<number[][]>(
-    generateCluesBoard({ board: mineBoard, emptyCellValue })
+    generateCluesBoard({ board: mineBoard, emptyCellValue }),
   );
 
   const [displayBoard, setDisplayBoard] = useState(
@@ -47,7 +49,7 @@ const Minesweeper = ({ setRestartGame }: { setRestartGame?: () => void }) => {
       numberOfRows: 9,
       numberOfColumns: 9,
       fillValue: emptyCellValue,
-    })
+    }),
   );
 
   const [hasGameStarted, setHasGameStarted] = useState(false);
@@ -84,7 +86,9 @@ const Minesweeper = ({ setRestartGame }: { setRestartGame?: () => void }) => {
     });
 
     // If cell is 9 (a mine) set 'game over'
-    if (getCellValue({ board: cluesBoardRef.current, pos: selectedCellPos }) === 9) {
+    if (
+      getCellValue({ board: cluesBoardRef.current, pos: selectedCellPos }) === 9
+    ) {
       setGameOver(GAME_LOSE);
       return;
     }
@@ -175,7 +179,10 @@ const Minesweeper = ({ setRestartGame }: { setRestartGame?: () => void }) => {
         const targetCellPos = targetDataPos ? JSON.parse(targetDataPos) : null;
 
         // Flag cell
-        if (numberOfMines - flagsMarked.length !== 0 && targetDataValue === '-1') {
+        if (
+          numberOfMines - flagsMarked.length !== 0 &&
+          targetDataValue === '-1'
+        ) {
           target.setAttribute('data-value', '10');
           setFlagsMarked((prev) => [...prev, targetCellPos]);
         }
@@ -207,32 +214,31 @@ const Minesweeper = ({ setRestartGame }: { setRestartGame?: () => void }) => {
 
   return (
     <>
-      <div className='gp-game-wrapper minesweeper-game-wrapper'>
-        <div className='minesweeper-panel-wrapper'>
+      <div className={style['game-wrapper']}>
+        <div className={style['panel-wrapper']}>
           <Panel
             sections={[
               { heading: 'clock', value: clock },
               { heading: 'flags', value: numberOfMines - flagsMarked.length },
             ]}
           />
-          <span className='minesweeper-emoji'> {gameOver ? '😵' : '😀'}</span>
+          <span className={style['emoji']}>{gameOver ? '😵' : '😀'}</span>
         </div>
 
-        <div className='overlay-wrapper'>
+        <div className="overlay-wrapper">
           <Board
             ref={boardRef}
             board={displayBoard}
             CellComponent={Cell}
-            className='minesweeper-board'
             onClickCellCallback={handleCellClick}
           />
-          <div className='overlay-text-wrapper'>
+          <div className="overlay-text-wrapper">
             {gameOver && (
               <>
-                <p className='overlay-text'>
+                <p className="overlay-text">
                   {gameOver === 'win' ? 'You win!' : 'You Lose'}
                 </p>
-                <button className='overlay-button' onClick={setRestartGame}>
+                <button className="overlay-button" onClick={setRestartGame}>
                   Play Again?
                 </button>
               </>
@@ -241,10 +247,10 @@ const Minesweeper = ({ setRestartGame }: { setRestartGame?: () => void }) => {
         </div>
       </div>
 
-      <div className='game-instructions'>
-        <p className='panel-text panel-text-bold'>Instructions</p>
+      <div className="game-instructions">
+        <p className="panel-text panel-text-bold">Instructions</p>
 
-        <ul className='panel-text game-list'>
+        <ul className="panel-text game-list">
           <Instructions />
           {useMatchMedia('DESKTOP') ? (
             <>
@@ -262,7 +268,7 @@ const Minesweeper = ({ setRestartGame }: { setRestartGame?: () => void }) => {
         </ul>
       </div>
 
-      <div className='game-controls-wrapper'>
+      <div className="game-controls-wrapper">
         <Controls move={() => null} onStartClickHandler={setRestartGame!} />
       </div>
     </>

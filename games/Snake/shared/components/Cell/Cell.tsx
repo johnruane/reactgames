@@ -1,7 +1,8 @@
 import { memo } from 'react';
+
 import classNames from 'classnames';
 
-import './style.css';
+import style from './style.module.css';
 
 const Cell = memo(function Cell({
   id = '',
@@ -18,7 +19,7 @@ const Cell = memo(function Cell({
     <span
       id={id}
       data-pos={pos}
-      className={classNames('board-cell', additionalClasses)}
+      className={classNames(style['board-cell'], additionalClasses)}
       data-value={value}
     />
   );
