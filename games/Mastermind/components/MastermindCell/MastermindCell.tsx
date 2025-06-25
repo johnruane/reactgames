@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import classNames from 'classnames';
 
-import './style.css';
+import styles from './style.module.css';
 
 const MastermindCell = ({
   dataRow,
@@ -20,7 +20,7 @@ const MastermindCell = ({
 }) => {
   return (
     <span
-      className={classNames(`board-cell`, additionalClasses)}
+      className={classNames(styles['board-cell'], additionalClasses)}
       data-row={dataRow}
       data-cell={dataCell}
       data-value={String(dataValue)}

@@ -1,4 +1,5 @@
-import './style.css';
+import classNames from 'classnames';
+import style from './style.module.css';
 
 export default function Panel({
   sections,
@@ -6,15 +7,15 @@ export default function Panel({
   sections: Record<string, string | number | React.ReactNode>[];
 }) {
   return (
-    <div className="panel-wrapper">
+    <div className={style['panel-wrapper']}>
       {sections?.map((section) => {
         const { heading = null, value = null } = section || {};
         return (
-          <div className="panel" key={`${heading}` || `${value}`}>
+          <div className={style['panel']} key={`${heading}` || `${value}`}>
             {heading !== null && (
-              <p className="panel-text panel-text-bold">{heading}</p>
+              <p className={classNames(style['text'], style['bold'])}>{heading}</p>
             )}
-            {value !== null && <div className="panel-text">{value}</div>}
+            {value !== null && <div className={style['text']}>{value}</div>}
           </div>
         );
       })}

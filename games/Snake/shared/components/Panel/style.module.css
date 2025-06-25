@@ -1,0 +1,41 @@
+.panelWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel {
+  display: grid;
+  row-gap: 0.25rem;
+  background-color: #161616;
+  padding: 0.5rem;
+  border-radius: 0.125rem;
+
+  @media (min-width: 768px) {
+    padding: 1rem;
+  }
+
+  & > :first-child {
+    border-bottom: 0.5px solid var(--color-white);
+    padding-bottom: 0.35rem;
+  }
+}
+
+.text {
+  display: block;
+  margin: 0;
+  font-size: 0.5rem;
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
+}
+
+.bold {
+  font-size: 0.5rem;
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
+}

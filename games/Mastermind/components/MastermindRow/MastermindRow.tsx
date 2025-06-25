@@ -5,7 +5,7 @@ import MastermindContext from '../../context/MastermindContext';
 
 import MastermindCell from '../MastermindCell';
 
-import './style.css';
+import styles from './style.module.css';
 
 const MastermindRow = ({ rowIndex, activeRow, additionalClasses }) => {
   const secretCode = useContext(MastermindContext);
@@ -23,7 +23,7 @@ const MastermindRow = ({ rowIndex, activeRow, additionalClasses }) => {
   return (
     <div
       key={`mastermind-row-${rowIndex}`}
-      className='mastermind-row'
+      className={styles['mastermind-row']}
       data-row={`mastermind-row-${rowIndex}`}
     >
       {Array.from({ length: 4 }).map((_, index) => (
@@ -46,8 +46,8 @@ const MastermindRow = ({ rowIndex, activeRow, additionalClasses }) => {
       ))}
 
       <button
-        className={classNames('mastermind-go-button', {
-          ['hide']: rowIndex !== activeRow,
+        className={classNames(styles['mastermind-go-button'], {
+          [styles['hide']]: rowIndex !== activeRow,
         })}
       >
         Go!

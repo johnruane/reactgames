@@ -1,4 +1,4 @@
-.overlay-text {
+.text {
   font-size: 1rem;
   font-weight: var(--font-weight-bold);
   text-align: center;
@@ -11,7 +11,7 @@
   }
 }
 
-.overlay-text-wrapper {
+.text-wrapper {
   color: var(--color-white);
   white-space: nowrap;
   position: absolute;
@@ -20,7 +20,7 @@
   transform: translate3d(-50%, -50%, 0);
 }
 
-.overlay-button {
+.button {
   border: none;
   outline: 0.4rem solid var(--color-white);
   outline-offset: 0.4rem;

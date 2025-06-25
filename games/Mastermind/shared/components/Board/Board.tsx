@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 import { Cell } from '..';
 import classNames from 'classnames';
 
-import './style.css';
+import style from './style.module.css';
 
 const Board = forwardRef<
   HTMLDivElement,
@@ -22,7 +22,7 @@ const Board = forwardRef<
   return (
     <div ref={ref} className={classNames('board', className)}>
       {board?.map((boardRow, i) => (
-        <div key={`r-${i}`} className="board-row" data-animate="row">
+        <div key={`r-${i}`} className={style['board-row']} data-animate='row'>
           {boardRow.map((cell, j) => (
             <CellComponent
               key={`c-${i}-${j}`}

@@ -1,9 +1,9 @@
-.game-controls {
+.controls {
   display: grid;
   height: fit-content;
 }
 
-.game-controls-elements-wrapper {
+.elements-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -62,7 +62,7 @@
   }
 }
 
-.game-controls-d-pad-spacer {
+.d-pad-spacer {
   grid-column: 2;
   grid-row: 2;
 }
@@ -91,7 +91,7 @@ button.button-b {
   height: 2.75rem;
 }
 
-.game-function-buttons-wrapper {
+.buttons-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,14 +99,14 @@ button.button-b {
   row-gap: 1rem;
 }
 
-.game-controls-button-text-wrapper {
+.button-text-wrapper {
   display: grid;
   justify-items: center;
   gap: $space-3xs;
   user-select: none;
 }
 
-button.game-controls-button {
+button.button {
   width: 3.5rem;
   height: 1.5rem;
   background-color: var(--color-black);
@@ -115,13 +115,13 @@ button.game-controls-button {
   border: none;
 }
 
-.game-controls-button-text {
+.button-text {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-bold);
   color: var(--color-white);
 }
 
-.game-controls-elements-wrapper-desktop {
+.elements-wrapper-desktop {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   grid-gap: 1rem;

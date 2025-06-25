@@ -1,4 +1,6 @@
-import './style.css';
+import classNames from 'classnames';
+
+import style from './style.module.css';
 
 export default function Controls({
   move,
@@ -10,57 +12,60 @@ export default function Controls({
   onQuitClickHandle?: () => void;
 }>) {
   return (
-    <div className='game-controls'>
-      <div className='game-controls-elements-wrapper'>
-        <div className='game-controls-d-pad'>
+    <div className={style['controls']}>
+      <div className={style['elements-wrapper']}>
+        <div className={style['game-controls-d-pad']}>
           <button
-            className='button-reset pad-left'
+            className={classNames('button-reset', style['pad-left'])}
             onClick={() => move('ArrowLeft')}
             aria-label='Move left'
           />
           <button
-            className='button-reset pad-down'
+            className={classNames('button-reset', style['pad-down'])}
             onClick={() => move('ArrowDown')}
             aria-label='Move down'
           />
           <button
-            className='button-reset pad-up'
+            className={classNames('button-reset', style['pad-up'])}
             onClick={() => move('ArrowUp')}
             aria-label='Move up'
           />
           <button
-            className='button-reset pad-right'
+            className={classNames('button-reset', style['pad-right'])}
             onClick={() => move('ArrowRight')}
             aria-label='Move right'
           />
 
-          <div className='game-controls-d-pad-spacer'></div>
+          <div className={style['d-pad-spacer']}></div>
         </div>
-        <div className='game-function-buttons-wrapper'>
-          <span className='game-controls-button-text-wrapper'>
-            <p className='game-controls-button-text'>START</p>
+        <div className={style['buttons-wrapper']}>
+          <span className={style['button-text-wrapper']}>
+            <p className={style['button-text']}>START</p>
             <button
-              className='button-reset game-controls-button'
+              className={classNames('button-reset', style['button'])}
               onClick={onStartClickHandler}
               aria-label='Start game'
             />
           </span>
-          <span className='game-controls-button-text-wrapper'>
-            <p className='game-controls-button-text'>SELECT</p>
+          <span className={style['button-text-wrapper']}>
+            <p className={style['button-text']}>SELECT</p>
             <button
-              className='button-reset game-controls-button'
+              className={classNames('button-reset', style['button'])}
               onClick={onQuitClickHandler}
               aria-label='Open games menu'
             />
           </span>
         </div>
-        <div className='control-buttons'>
+        <div className={style['control-buttons']}>
           <button
-            className='button-reset button-a'
+            className={classNames('button-reset', style['button-a'])}
             onClick={() => move('Space')}
             aria-label='A button'
           />
-          <button className='button-reset button-b' aria-label='B button' />
+          <button
+            className={classNames('button-reset', style['button-b'])}
+            aria-label='B button'
+          />
         </div>
       </div>
     </div>

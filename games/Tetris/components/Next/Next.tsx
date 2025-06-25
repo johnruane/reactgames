@@ -1,6 +1,6 @@
 import { Board, Cell, Panel } from '../../shared/components';
 
-import './style.css';
+import styles from './style.module.css';
 
 const emptyBoard = [
   [0, 0, 0, 0],
@@ -18,7 +18,11 @@ export default function Next({ nextTetromino, show }) {
         {
           heading: 'Next',
           value: (
-            <Board board={boardToShow} CellComponent={Cell} className='next-board' />
+            <Board
+              board={boardToShow}
+              CellComponent={Cell}
+              className={styles['next-board']}
+            />
           ),
         },
       ]}

@@ -1,4 +1,4 @@
-.panel-wrapper {
+.panelWrapper {
   display: flex;
   flex-direction: column;
 }
@@ -20,7 +20,7 @@
   }
 }
 
-.panel-text {
+.text {
   display: block;
   margin: 0;
   font-size: 0.5rem;
@@ -30,7 +30,7 @@
   }
 }
 
-.panel-text-bold {
+.bold {
   font-size: 0.5rem;
   font-weight: var(--font-weight-bold);
   text-transform: uppercase;
