@@ -1,0 +1,53 @@
+.row {
+  display: grid;
+  grid-template-areas:    
+  'one two three four g1 g2 button'
+  'one two three four g3 g4 button';
+}
+
+.guess-cell-1 {
+  grid-area: one;
+}
+
+.guess-cell-2 {
+  grid-area: two;
+}
+
+.guess-cell-3 {
+  grid-area: three;
+}
+
+.guess-cell-4 {
+  grid-area: four;
+}
+
+.row [class*='result-cell-'], 
+.row [class*='result-cell-']::after {
+  width: 1rem;
+  height: 1rem;
+}
+
+.result-cell-1 {
+  grid-area: g1;
+}
+
+.result-cell-2 {
+  grid-area: g2;
+}
+
+.result-cell-3 {
+  grid-area: g3;
+}
+
+.result-cell-4 {
+  grid-area: g4;
+}
+
+.button {
+  grid-area: button;
+}
+
+.hide {
+  visibility: hidden;
+  opacity: 0;
+}

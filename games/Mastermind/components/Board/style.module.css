@@ -1,0 +1,6 @@
+.board [class*=guess-cell],
+.board [class*=guess-cell]::after {
+  width: var(--cell-md);
+  height: var(--cell-md);
+}
+

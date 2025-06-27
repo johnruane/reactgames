@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-const MastermindContext = createContext(null);
+const MastermindContext = createContext<number[]>([]);
 
 export default MastermindContext;

@@ -15,26 +15,39 @@ const Board = forwardRef<
       pos: string;
       onClickCellCallback?: (pos: string) => void;
     }>;
-    className?: string;
+    additionalBoardClasses?: string;
+    additionalCellClasses?: string;
     onClickCellCallback?: (pos: string) => void;
   }
->(({ board, CellComponent = Cell, className, onClickCellCallback }, ref) => {
-  return (
-    <div ref={ref} className={classNames('board', className)}>
-      {board?.map((boardRow, i) => (
-        <div key={`r-${i}`} className={style['board-row']} data-animate='row'>
-          {boardRow.map((cell, j) => (
-            <CellComponent
-              key={`c-${i}-${j}`}
-              value={cell}
-              pos={`{"r":${i},"c":${j}}`}
-              onClickCellCallback={onClickCellCallback}
-            />
-          ))}
-        </div>
-      ))}
-    </div>
-  );
-});
+>(
+  (
+    {
+      board,
+      CellComponent = Cell,
+      additionalBoardClasses,
+      additionalCellClasses,
+      onClickCellCallback,
+    },
+    ref,
+  ) => {
+    return (
+      <div ref={ref} className={classNames('board', additionalBoardClasses)}>
+        {board?.map((boardRow, i) => (
+          <div key={`r-${i}`} className={style['board-row']} data-animate="row">
+            {boardRow.map((cell, j) => (
+              <CellComponent
+                key={`c-${i}-${j}`}
+                value={cell}
+                pos={`{"r":${i},"c":${j}}`}
+                additionalClasses={additionalCellClasses}
+                onClickCellCallback={onClickCellCallback}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    );
+  },
+);
 
 export default Board;

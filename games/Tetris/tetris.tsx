@@ -1,13 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+import { useInterval, useMatchMedia } from './shared/hooks';
 import { cloneDeep } from 'lodash-es';
 
 import Next from './components/Next';
-import { Board, Controls, Panel, Instructions, GameOverlay } from './shared/components';
+import {
+  Board,
+  Controls,
+  GameOverlay,
+  Instructions,
+  Panel,
+} from './shared/components';
 
 import { create2dArray } from './shared/utils';
-import { useInterval, useMatchMedia } from './shared/hooks';
 
 import {
   addTetrominoToBoard,
@@ -155,7 +161,7 @@ const Tetris = ({ setRestartGame }: { setRestartGame?: () => void }) => {
         c: newC,
       },
       currentTetromino?.matrix,
-      staticBoard
+      staticBoard,
     );
 
     if (canMove) {
@@ -174,8 +180,8 @@ const Tetris = ({ setRestartGame }: { setRestartGame?: () => void }) => {
           cloneDeep(staticBoard),
           currentTetromino?.matrix,
           position.r,
-          position.c
-        )
+          position.c,
+        ),
       );
     }
   };
@@ -203,7 +209,7 @@ const Tetris = ({ setRestartGame }: { setRestartGame?: () => void }) => {
           c: position.c,
         },
         rotatedMatrix,
-        staticBoard
+        staticBoard,
       );
 
       if (canMove) {
@@ -229,7 +235,7 @@ const Tetris = ({ setRestartGame }: { setRestartGame?: () => void }) => {
      * indexes would be wrong as we shift the rows downwards after removing a row.
      */
     const indexesOfCompleteRows = findCompletedRows({ board: cloneBoard }).sort(
-      (a, b) => a - b
+      (a, b) => a - b,
     );
     const updatedBoard = removeRowsFromBoard(cloneBoard, indexesOfCompleteRows);
 
@@ -255,7 +261,7 @@ const Tetris = ({ setRestartGame }: { setRestartGame?: () => void }) => {
         animateCompleteRow(
           element,
           index === indexesOfCompleteRows.length - 1,
-          updateStaticBoardCallback
+          updateStaticBoardCallback,
         );
         setLines((current) => current + 1);
       });
@@ -277,7 +283,7 @@ const Tetris = ({ setRestartGame }: { setRestartGame?: () => void }) => {
         c: 4,
       },
       currentTetromino?.matrix,
-      staticBoard
+      staticBoard,
     );
 
     // End current game.
@@ -299,8 +305,8 @@ const Tetris = ({ setRestartGame }: { setRestartGame?: () => void }) => {
         cloneDeep(staticBoard),
         currentTetromino?.matrix,
         position.r,
-        position.c
-      )
+        position.c,
+      ),
     );
   }, [position, currentTetromino]);
 
@@ -333,8 +339,8 @@ const Tetris = ({ setRestartGame }: { setRestartGame?: () => void }) => {
   return (
     <>
       <div className={'tetris tetris-game-wrapper'}>
-        <div className='game-side-details'>
-          <div className='tetris-panel-wrapper'>
+        <div className="game-side-details">
+          <div className="tetris-panel-wrapper">
             <Panel
               sections={[
                 { heading: 'score', value: score },
@@ -344,9 +350,9 @@ const Tetris = ({ setRestartGame }: { setRestartGame?: () => void }) => {
             />
           </div>
         </div>
-        <div className='overlay-wrapper'>
-          <Board board={displayBoard} className='tetris' />
-          <div className='overlay-text-wrapper'>
+        <div className="overlay-wrapper">
+          <Board board={displayBoard} additionalBoardClasses="tetris" />
+          <div className="overlay-text-wrapper">
             <GameOverlay
               showGameOver={gameOver}
               showGameOverButton={!hasGameStarted}
@@ -355,17 +361,17 @@ const Tetris = ({ setRestartGame }: { setRestartGame?: () => void }) => {
           </div>
         </div>
 
-        <div className='tetris-score-wrapper' data-stack='space-xs'>
-          <div className='next-wrapper'>
+        <div className="tetris-score-wrapper" data-stack="space-xs">
+          <div className="next-wrapper">
             <Next nextTetromino={nextTetromino?.matrix} show={hasGameStarted} />
           </div>
         </div>
       </div>
 
-      <div className='game-instructions'>
-        <p className='panel-text panel-text-bold'>Instructions</p>
+      <div className="game-instructions">
+        <p className="panel-text panel-text-bold">Instructions</p>
 
-        <ul className='panel-text game-list'>
+        <ul className="panel-text game-list">
           <Instructions />
           {useMatchMedia('DESKTOP') ? (
             <>
@@ -381,7 +387,7 @@ const Tetris = ({ setRestartGame }: { setRestartGame?: () => void }) => {
         </ul>
       </div>
 
-      <div className='game-controls-wrapper'>
+      <div className="game-controls-wrapper">
         <Controls move={move} onStartClickHandler={setRestartGame!} />
       </div>
     </>

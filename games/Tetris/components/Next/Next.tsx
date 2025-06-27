@@ -21,7 +21,7 @@ export default function Next({ nextTetromino, show }) {
             <Board
               board={boardToShow}
               CellComponent={Cell}
-              className={styles['next-board']}
+              additionalBoardClasses={styles['next-board']}
               additionalCellClasses={styles['cell']}
             />
           ),

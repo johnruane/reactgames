@@ -204,10 +204,10 @@ const Minesweeper = ({ setRestartGame }: { setRestartGame?: () => void }) => {
   }, [flagsMarked]);
 
   /*
-   * Interval to move tetrominos every 'speed' milliseconds
+   * Interval to update clock every 1000 milliseconds.
    */
   useInterval(() => {
-    if (hasGameStarted) {
+    if (hasGameStarted && gameOver === '') {
       setClock((prev) => prev + 1);
     }
   }, 1000);

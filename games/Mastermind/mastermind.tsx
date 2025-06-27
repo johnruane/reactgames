@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 import MastermindContext from './context/MastermindContext';
 
+import MastermindBoard from './components/Board';
+import MastermindCell from './components/Cell';
 import { Instructions } from './shared/components';
-import MastermindBoard from './components/MastermindBoard';
 
 import generateSecretCode from './lib/generateSecretCode';
 
 import './shared/styles/global.css';
-import './styles/style.css';
+import styles from './styles/style.module.css';
 
 const Snake = ({ setRestartGame }: { setRestartGame?: () => void }) => {
   const [gameOver, setGameOver] = useState(false);
@@ -71,16 +72,16 @@ const Snake = ({ setRestartGame }: { setRestartGame?: () => void }) => {
 
   return (
     <>
-      <div className='gp-game-wrapper snake-game-wrapper'>
+      <div className="gp-game-wrapper snake-game-wrapper">
         {/* <div className='snake-panel-wrapper'>
           <Panel sections={[{ heading: 'score', value: score }]} />
         </div> */}
 
-        <div className='overlay-wrapper' data-stack='default'>
+        <div className="overlay-wrapper" data-stack="default">
           <MastermindContext.Provider value={secretCode}>
             <MastermindBoard
               numberOfRows={10}
-              className='mastermind-board'
+              additionalBoardClasses="mastermind-board"
               activeRow={activeRow}
             />
           </MastermindContext.Provider>
@@ -89,18 +90,24 @@ const Snake = ({ setRestartGame }: { setRestartGame?: () => void }) => {
             showGameOverButton={!hasGameStarted}
             // gameOverButtonAction={startGame}
           /> */}
-          <div className='answer-row'>
-            {Array.from(secretCode).map((value) => (
-              <span className='answer-row-cell' data-value={value}></span>
-            ))}
+          <div className={styles['answer-row']}>
+            {Array.from(secretCode).map((value, index) => {
+              return (
+                <MastermindCell
+                  dataValue={value}
+                  key={`result-cell-${index}-${value}`}
+                  additionalClasses={styles[`answer-row-cell`]}
+                />
+              );
+            })}
           </div>
         </div>
       </div>
 
-      <div className='game-instructions'>
-        <p className='panel-text panel-text-bold'>Instructions</p>
+      <div className="game-instructions">
+        <p className="panel-text panel-text-bold">Instructions</p>
 
-        <ul className='panel-text game-list'>
+        <ul className="panel-text game-list">
           <Instructions />
           {/* {useMatchMedia('DESKTOP') ? (
             <li>Use the ARROW keys to move Left, Right, Up or Down.</li>
@@ -110,7 +117,7 @@ const Snake = ({ setRestartGame }: { setRestartGame?: () => void }) => {
         </ul>
       </div>
 
-      <div className='game-controls-wrapper'>
+      <div className="game-controls-wrapper">
         {/* <Controls
           move={setProposedSnakeDirection}
           onStartClickHandler={setRestartGame!}
