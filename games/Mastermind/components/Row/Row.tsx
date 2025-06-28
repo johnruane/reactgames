@@ -1,8 +1,10 @@
 import { useContext, useState } from 'react';
 
 import MastermindContext from '../../context/MastermindContext';
-import MastermindCell from '../Cell';
+import Cell from '../Cell';
 import classNames from 'classnames';
+
+import calculateResults from '../../lib/calculateResults';
 
 import styles from './style.module.css';
 
@@ -17,7 +19,10 @@ const MastermindRow = ({
 }) => {
   const secretCode = useContext(MastermindContext)!;
 
-  const [rowValues, setRowValues] = useState<number[]>([0, 0, 0, 0]);
+  const [rowValues, setRowValues] = useState<number[]>(
+    activeRow === rowIndex ? [1, 1, 1, 1] : [0, 0, 0, 0],
+  );
+  const [resultValues, setResultValues] = useState<number[]>([0, 0, 0, 0]);
 
   function handleCellClick(
     e: React.MouseEvent<HTMLSpanElement>,
@@ -25,6 +30,8 @@ const MastermindRow = ({
   ) {
     const cellIndex = Number(e.currentTarget.getAttribute('data-cell'));
     const newCellValues = Array.from(rowValues);
+
+    console.log(rowValues[cellIndex] + 1);
 
     if (direction === 'forwards') {
       newCellValues[cellIndex] =
@@ -38,25 +45,19 @@ const MastermindRow = ({
   }
 
   function handleButtonClick() {
-    let resultStr = '';
-    rowValues.forEach((index, value) => {
-      if (secretCode[`${index}`] === value) {
-        resultStr += 'Y';
-      } else {
-        resultStr += 'N';
-      }
-    });
-    console.log(resultStr);
+    const results = calculateResults({ guess: rowValues, secret: secretCode });
+
+    setResultValues(results);
   }
 
   return (
     <div
       key={`row-${rowIndex}`}
-      className={(styles['row'], additionalClasses)}
+      className={classNames(styles['row'], additionalClasses)}
       data-row={`row-${rowIndex}`}
     >
       {Array.from({ length: 4 }).map((_, index) => (
-        <MastermindCell
+        <Cell
           key={`guess-cell-${rowIndex}-${index}`}
           dataRow={rowIndex}
           dataCell={index}
@@ -67,12 +68,18 @@ const MastermindRow = ({
         />
       ))}
 
-      {Array.from({ length: 4 }).map((_, index) => (
-        <MastermindCell
-          key={`result-cell-${rowIndex}-${index}`}
-          additionalClasses={styles[`result-cell-${index + 1}`]}
-        />
-      ))}
+      <div className={styles['result-wrapper']}>
+        {Array.from({ length: 4 }).map((_, index) => (
+          <Cell
+            key={`result-cell-${rowIndex}-${index}`}
+            dataValue={resultValues[index]}
+            additionalClasses={classNames(
+              styles['result-cell'],
+              styles[`result-cell-${index + 1}`],
+            )}
+          />
+        ))}
+      </div>
 
       <button
         className={classNames(styles['button'], {

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import MastermindContext from './context/MastermindContext';
 
-import MastermindBoard from './components/Board';
-import MastermindCell from './components/Cell';
+import Board from './components/Board';
+import Cell from './components/Cell';
 import { Instructions } from './shared/components';
 
 import generateSecretCode from './lib/generateSecretCode';
@@ -79,9 +79,9 @@ const Snake = ({ setRestartGame }: { setRestartGame?: () => void }) => {
 
         <div className="overlay-wrapper" data-stack="default">
           <MastermindContext.Provider value={secretCode}>
-            <MastermindBoard
+            <Board
               numberOfRows={10}
-              additionalBoardClasses="mastermind-board"
+              additionalBoardClasses="board"
               activeRow={activeRow}
             />
           </MastermindContext.Provider>
@@ -93,7 +93,7 @@ const Snake = ({ setRestartGame }: { setRestartGame?: () => void }) => {
           <div className={styles['answer-row']}>
             {Array.from(secretCode).map((value, index) => {
               return (
-                <MastermindCell
+                <Cell
                   dataValue={value}
                   key={`result-cell-${index}-${value}`}
                   additionalClasses={styles[`answer-row-cell`]}

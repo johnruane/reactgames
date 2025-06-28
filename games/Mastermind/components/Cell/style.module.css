@@ -5,41 +5,48 @@
 
 .cell,
 .cell::after {
-  width: var(--cell-sm);
-  height: var(--cell-sm);
+  width: var(--cell-lg);
+  height: var(--cell-lg);
   background: var(--cell-background-color);
-  outline: 1px solid var(--cell-outline-color);
+  border-radius: 0.75rem;
+
+  &:hover {
+    cursor: pointer;
+  }
 
   @media (min-width: 768px) {
-    width: var(--cell-md);
-    height: var(--cell-md);
+    width: var(--cell-xl);
+    height: var(--cell-xl);
   }
 }
 
 .cell  {
   &::after {
-    border-radius: 50%;
     outline: none !important;
-    max-width: 92%;
-    max-height: 92%;
   }
   &[data-value='1']::after {
-    background-color: #FF7F2A; /* Brighter Burnt Orange */
+    background-color: #FF7F2A;
   }
   &[data-value='2']::after {
-    background-color: #F6BE00; /* Brighter Mustard Yellow */
+    background-color: #F6BE00;
   }
   &[data-value='3']::after {
-    background-color: #9DBE3F; /* Lively Olive Green */
+    background-color: #9DBE3F;
   }
   &[data-value='4']::after {
-    background-color: #7BAFD4; /* Brighter Dusty Blue */
+    background-color: #7BAFD4;
   }
   &[data-value='5']::after {
-    background-color: #A61B29; /* Rich Burgundy */
+    background-color: #A61B29;
   }
   &[data-value='6']::after {
-    background-color: #CFA0C8; /* Brighter Mauve */
+    background-color: #CFA0C8;
+  }
+  &[data-value='8']::after {
+    background-color: #000000;
+  }
+  &[data-value='9']::after {
+    background-color: #FFFFFF;
   }
 }
 

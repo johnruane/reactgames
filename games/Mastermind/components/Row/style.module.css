@@ -1,8 +1,9 @@
 .row {
   display: grid;
   grid-template-areas:    
-  'one two three four g1 g2 button'
-  'one two three four g3 g4 button';
+    'one two three four result button';
+  column-gap: 0.5rem;
+  align-items: center;
 }
 
 .guess-cell-1 {
@@ -21,26 +22,37 @@
   grid-area: four;
 }
 
-.row [class*='result-cell-'], 
-.row [class*='result-cell-']::after {
-  width: 1rem;
-  height: 1rem;
+.result-cell, 
+.result-cell::after {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 0.25rem;
+  background-color:rgb(29, 86, 115); 
+}
+
+.result-wrapper {
+  grid-area: result;
+  display: grid;
+  grid-template-areas:    
+    'r1 r2' 
+    'r3 r4';
+  gap: 0.15rem;
 }
 
 .result-cell-1 {
-  grid-area: g1;
+  grid-area: r1;
 }
 
 .result-cell-2 {
-  grid-area: g2;
+  grid-area: r2;
 }
 
 .result-cell-3 {
-  grid-area: g3;
+  grid-area: r3;
 }
 
 .result-cell-4 {
-  grid-area: g4;
+  grid-area: r4;
 }
 
 .button {

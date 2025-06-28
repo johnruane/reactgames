@@ -1,6 +1,5 @@
-.board [class*=guess-cell],
-.board [class*=guess-cell]::after {
-  width: var(--cell-md);
-  height: var(--cell-md);
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
-
