@@ -1,5 +1,7 @@
 .answer-row {
   display: flex;
+  column-gap: 0.5rem;
+  justify-content: center;
 }
 
 .answer-row-cell::after {
@@ -9,13 +11,6 @@
 
 .answer-row-cell,
 .answer-row-cell::after {
-  width: var(--cell-sm);
-  height: var(--cell-sm);
   background: var(--cell-background-color);
-  outline: 1px solid var(--cell-outline-color);
 
-  @media (min-width: 768px) {
-    width: var(--cell-md);
-    height: var(--cell-md);
-  }
 }

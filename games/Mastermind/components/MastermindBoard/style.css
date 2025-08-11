@@ -1,6 +1,0 @@
-.mastermind-board [class*=guess-cell],
-.mastermind-board [class*=guess-cell]::after {
-  width: var(--cell-md);
-  height: var(--cell-md);
-}
-

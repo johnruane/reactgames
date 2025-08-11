@@ -5,13 +5,15 @@
 
 .board-cell,
 .board-cell::after {
-  width: var(--cell-sm);
-  height: var(--cell-sm);
+  flex: 1;
+  aspect-ratio: 1 / 1;
+  /* width: var(--cell-sm);
+  height: var(--cell-sm); */
   background: var(--cell-background-color);
   outline: 1px solid var(--cell-outline-color);
 
   @media (min-width: 768px) {
-    width: var(--cell-md);
-    height: var(--cell-md);
+    /* width: var(--cell-md);
+    height: var(--cell-md); */
   }
 }

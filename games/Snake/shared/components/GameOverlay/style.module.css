@@ -5,10 +5,6 @@
   text-transform: uppercase;
   background-color: rgba(0, 0, 0);
   padding: 0.25rem 0.5rem;
-
-  @media (min-width: 768px) {
-    font-size: 1.5rem;
-  }
 }
 
 .text-wrapper {
@@ -18,12 +14,13 @@
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
+  outline: 0.4rem solid var(--color-white);
+  outline-offset: 0.4rem;
 }
 
 .button {
   border: none;
-  outline: 0.4rem solid var(--color-white);
-  outline-offset: 0.4rem;
+  width: 100%;
   color: var(--color-black);
   font-size: 1rem;
   font-weight: var(--font-weight-bold);

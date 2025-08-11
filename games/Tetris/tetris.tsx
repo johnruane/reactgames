@@ -350,16 +350,8 @@ const Tetris = ({ setRestartGame }: { setRestartGame?: () => void }) => {
             />
           </div>
         </div>
-        <div className="overlay-wrapper">
-          <Board board={displayBoard} additionalBoardClasses="tetris" />
-          <div className="overlay-text-wrapper">
-            <GameOverlay
-              showGameOver={gameOver}
-              showGameOverButton={!hasGameStarted}
-              gameOverButtonAction={startGame}
-            />
-          </div>
-        </div>
+
+        <Board board={displayBoard} additionalBoardClasses="tetris" />
 
         <div className="tetris-score-wrapper" data-stack="space-xs">
           <div className="next-wrapper">

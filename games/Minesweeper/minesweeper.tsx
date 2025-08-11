@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useInterval, useMatchMedia } from './shared/hooks';
-import classNames from 'classnames';
 
 import Cell from './components/Cell';
 import { Board, Controls, Instructions, Panel } from './shared/components';
@@ -232,8 +231,8 @@ const Minesweeper = ({ setRestartGame }: { setRestartGame?: () => void }) => {
             CellComponent={Cell}
             onClickCellCallback={handleCellClick}
           />
-          <div className="overlay-text-wrapper">
-            {gameOver && (
+          {gameOver && (
+            <div className="overlay-text-wrapper">
               <>
                 <p className="overlay-text">
                   {gameOver === 'win' ? 'You win!' : 'You Lose'}
@@ -242,8 +241,8 @@ const Minesweeper = ({ setRestartGame }: { setRestartGame?: () => void }) => {
                   Play Again?
                 </button>
               </>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
 

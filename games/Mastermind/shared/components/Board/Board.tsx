@@ -31,7 +31,10 @@ const Board = forwardRef<
     ref,
   ) => {
     return (
-      <div ref={ref} className={classNames('board', additionalBoardClasses)}>
+      <div
+        ref={ref}
+        className={classNames(style['board'], additionalBoardClasses)}
+      >
         {board?.map((boardRow, i) => (
           <div key={`r-${i}`} className={style['board-row']} data-animate="row">
             {boardRow.map((cell, j) => (

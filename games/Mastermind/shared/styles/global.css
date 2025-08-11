@@ -27,7 +27,7 @@
   transition: opacity 0.2s ease-in-out;
 
   @supports (padding: max(0px)) {
-    padding-bottom: max(1.5rem, env(safe-area-inset-left));
+    padding-bottom: max(0, env(safe-area-inset-left));
   }
 
   @media (pointer: coarse) and (hover: none) and (max-width: 1024px) {
@@ -47,6 +47,8 @@
   text-transform: uppercase;
   background-color: rgba(0, 0, 0);
   padding: 0.25rem 0.5rem;
+  outline: 0.4rem solid var(--color-white);
+  outline-offset: 0.4rem;
 
   @media (min-width: 768px) {
     font-size: 1.5rem;
@@ -60,12 +62,12 @@
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
+  outline: 0.4rem solid var(--color-white);
+  outline-offset: 0.4rem;
 }
 
 .overlay-button {
   border: none;
-  outline: 0.4rem solid var(--color-white);
-  outline-offset: 0.4rem;
   color: var(--color-black);
   font-size: 1rem;
   font-weight: var(--font-weight-bold);
@@ -83,6 +85,8 @@
 .game-side-details {
   display: grid;
   grid-template-rows: auto 1fr;
+  height: auto;
+  max-height: 100%;
 }
 
 .controls-text {
@@ -106,7 +110,6 @@
 
 .game-instructions {
   color: var(--color-white);
-  margin-top: 1rem;
 }
 
 .game-list {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import MastermindContext from './context/MastermindContext';
 
@@ -11,12 +11,12 @@ import generateSecretCode from './lib/generateSecretCode';
 import './shared/styles/global.css';
 import styles from './styles/style.module.css';
 
-const Snake = ({ setRestartGame }: { setRestartGame?: () => void }) => {
-  const [gameOver, setGameOver] = useState(false);
-  const [hasGameStarted, setHasGameStarted] = useState(false);
+const Snake = () => {
+  // const [gameOver, setGameOver] = useState<boolean>(false);
+  // const [hasGameStarted, setHasGameStarted] = useState<boolean>(false);
 
-  const [secretCode, setSecretCode] = useState([0, 0, 0, 0]);
-  const [activeRow, setActiveRow] = useState(0);
+  const [secretCode, setSecretCode] = useState<number[]>([0, 0, 0, 0]);
+  const [activeRow, setActiveRow] = useState<number>(0);
 
   useEffect(() => {
     const secretNumber = generateSecretCode();
@@ -83,6 +83,7 @@ const Snake = ({ setRestartGame }: { setRestartGame?: () => void }) => {
               numberOfRows={10}
               additionalBoardClasses="board"
               activeRow={activeRow}
+              setActiveRow={setActiveRow}
             />
           </MastermindContext.Provider>
           {/* <GameOverlay

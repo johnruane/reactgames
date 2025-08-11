@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useInterval, useMatchMedia } from './shared/hooks';
 import { cloneDeep } from 'lodash-es';

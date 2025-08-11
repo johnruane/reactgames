@@ -9,7 +9,7 @@ export default function Controls({
 }: Readonly<{
   move: (unknown: string) => void;
   onStartClickHandler: () => void;
-  onQuitClickHandle?: () => void;
+  onQuitClickHandler?: () => void;
 }>) {
   return (
     <div className={style['controls']}>
@@ -18,22 +18,22 @@ export default function Controls({
           <button
             className={classNames('button-reset', style['pad-left'])}
             onClick={() => move('ArrowLeft')}
-            aria-label='Move left'
+            aria-label="Move left"
           />
           <button
             className={classNames('button-reset', style['pad-down'])}
             onClick={() => move('ArrowDown')}
-            aria-label='Move down'
+            aria-label="Move down"
           />
           <button
             className={classNames('button-reset', style['pad-up'])}
             onClick={() => move('ArrowUp')}
-            aria-label='Move up'
+            aria-label="Move up"
           />
           <button
             className={classNames('button-reset', style['pad-right'])}
             onClick={() => move('ArrowRight')}
-            aria-label='Move right'
+            aria-label="Move right"
           />
 
           <div className={style['d-pad-spacer']}></div>
@@ -44,7 +44,7 @@ export default function Controls({
             <button
               className={classNames('button-reset', style['button'])}
               onClick={onStartClickHandler}
-              aria-label='Start game'
+              aria-label="Start game"
             />
           </span>
           <span className={style['button-text-wrapper']}>
@@ -52,7 +52,7 @@ export default function Controls({
             <button
               className={classNames('button-reset', style['button'])}
               onClick={onQuitClickHandler}
-              aria-label='Open games menu'
+              aria-label="Open games menu"
             />
           </span>
         </div>
@@ -60,11 +60,11 @@ export default function Controls({
           <button
             className={classNames('button-reset', style['button-a'])}
             onClick={() => move('Space')}
-            aria-label='A button'
+            aria-label="A button"
           />
           <button
             className={classNames('button-reset', style['button-b'])}
-            aria-label='B button'
+            aria-label="B button"
           />
         </div>
       </div>
