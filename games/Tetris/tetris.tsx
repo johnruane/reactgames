@@ -2,20 +2,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import useEventBus from './hooks/useEventBus';
-import { useInterval, useMatchMedia } from './shared/hooks';
+import { useInterval } from './shared/hooks';
 import { cloneDeep } from 'lodash-es';
 
 import Next from './components/Next';
-import {
-  Board,
-  Controls,
-  GameOverlay,
-  Instructions,
-  Panel,
-} from './shared/components';
+import { Board, GameOverlay, Panel } from './shared/components';
 
 import { create2dArray } from './shared/utils';
-import { tetrominos } from './utils/matrices';
 
 import {
   addTetrominoToBoard,

@@ -1,16 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import useEventBus from './hooks/useEventBus';
-import { useInterval, useMatchMedia } from './shared/hooks';
+import { useInterval } from './shared/hooks';
 import { cloneDeep } from 'lodash-es';
 
-import {
-  Board,
-  Controls,
-  GameOverlay,
-  Instructions,
-  Panel,
-} from './shared/components';
+import { Board, GameOverlay, Panel } from './shared/components';
 
 import { create2dArray } from './shared/utils';
 
@@ -28,7 +22,7 @@ const SNAKE_DIRECTIONS = {
 
 const FOOD_VALUE = 2;
 
-const Snake = ({ setRestartGame }: { setRestartGame?: () => void }) => {
+const Snake = () => {
   const emptyBoard = create2dArray({
     numberOfRows: 15,
     numberOfColumns: 15,
