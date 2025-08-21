@@ -1,17 +1,15 @@
 .tetris-game-wrapper {
   display: grid;
-  grid-template-columns: 1fr 2fr minmax(5rem, 1fr);
-  column-gap: 0.5rem;
+  grid-template-columns: 1fr 2fr 1fr;
+  column-gap: var(--space-s);
   color: var(--color-white);
   margin: 0 auto;
   width: 100%;
   max-height: 100%;
   overflow: hidden;
   max-width: 33rem;
-
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 2fr minmax(10rem, 1fr);
-  }
+  background: #161616;
+  padding: var(--space-s);
 }
 
 .tetris-panel-wrapper {

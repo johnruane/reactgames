@@ -1,9 +1,11 @@
-.game-wrapper {
+.minesweeper-game-wrapper {
   display: grid;
   grid-template-columns: minmax(auto, 1fr) auto;
   margin: 0 auto;
-  gap: 1rem;
+  column-gap: var(--space-s);
   color: var(--color-white);
+  background: #161616;
+  padding: var(--space-s);
 }
 
 .panel-wrapper {
@@ -18,3 +20,47 @@
   font-size: var(--font-size-md);
   background-color: transparent;
 }
+
+.overlay-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--space-xs);
+  color: var(--color-white);
+  white-space: nowrap;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.text {
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  text-transform: uppercase;
+  background-color: rgba(0, 0, 0);
+  padding: 0.25rem 0.5rem;
+  user-select: none;
+
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+  }
+}
+.button {
+  border: none;
+  outline: 0.1rem solid var(--color-white);
+  outline-offset: 0.2rem;
+  color: var(--color-black);
+  font-size: clamp(0.75rem, 3vw, 1.5rem);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  text-transform: uppercase;
+  background-color: rgba(255, 255, 255);
+  padding: 0.25rem 0.5rem;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+

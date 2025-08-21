@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { useInterval, useMatchMedia } from './shared/hooks';
+import { useInterval } from './shared/hooks';
+import classNames from 'classnames';
 
+import { GameOverlay } from '../Mastermind/shared/components';
 import Cell from './components/Cell';
-import { Board, Controls, Instructions, Panel } from './shared/components';
+import { Board, Panel } from './shared/components';
 
 import { create2dArray } from './shared/utils';
 
@@ -24,23 +26,29 @@ import style from './styles/style.module.css';
 const GAME_WIN = 'win';
 const GAME_LOSE = 'lose';
 
-const Minesweeper = ({ setRestartGame }: { setRestartGame?: () => void }) => {
+const Minesweeper = ({
+  restartClickHandler,
+}: {
+  restartClickHandler?: () => void;
+}) => {
   const boardRef = useRef<HTMLDivElement>(null);
 
   const numberOfMines = 10;
   const emptyCellValue = -1;
 
-  const mineBoard = generateMineBoard({
-    board: create2dArray({
-      numberOfRows: 9,
-      numberOfColumns: 9,
-      fillValue: emptyCellValue,
+  const mineBoardRef = useRef(
+    generateMineBoard({
+      board: create2dArray({
+        numberOfRows: 9,
+        numberOfColumns: 9,
+        fillValue: emptyCellValue,
+      }),
+      numberOfMines: numberOfMines,
     }),
-    numberOfMines: numberOfMines,
-  });
+  );
 
   const cluesBoardRef = useRef<number[][]>(
-    generateCluesBoard({ board: mineBoard, emptyCellValue }),
+    generateCluesBoard({ board: mineBoardRef.current, emptyCellValue }),
   );
 
   const [displayBoard, setDisplayBoard] = useState(
@@ -147,12 +155,15 @@ const Minesweeper = ({ setRestartGame }: { setRestartGame?: () => void }) => {
     if (gameOver !== '') {
       setHasGameStarted(false);
 
-      const cellsToUpdate = findAllMinePositions({ board: mineBoard });
+      const cellsToUpdate = findAllMinePositions({
+        board: mineBoardRef.current,
+      });
+
       // Reveal the last hidden cell somehow
       setDisplayBoard((prev) => {
         const newBoard = updateDisplayBoard({
           displayBoard: prev,
-          gameBoard: mineBoard,
+          gameBoard: mineBoardRef.current,
           cellsToUpdate: cellsToUpdate,
         });
         return newBoard;
@@ -213,7 +224,11 @@ const Minesweeper = ({ setRestartGame }: { setRestartGame?: () => void }) => {
 
   return (
     <>
-      <div className={style['game-wrapper']}>
+      <div
+        className={classNames(style['minesweeper-game-wrapper'], {
+          ['game-wrapper-overlay']: gameOver,
+        })}
+      >
         <div className={style['panel-wrapper']}>
           <Panel
             sections={[
@@ -231,44 +246,14 @@ const Minesweeper = ({ setRestartGame }: { setRestartGame?: () => void }) => {
             CellComponent={Cell}
             onClickCellCallback={handleCellClick}
           />
-          {gameOver && (
-            <div className="overlay-text-wrapper">
-              <>
-                <p className="overlay-text">
-                  {gameOver === 'win' ? 'You win!' : 'You Lose'}
-                </p>
-                <button className="overlay-button" onClick={setRestartGame}>
-                  Play Again?
-                </button>
-              </>
-            </div>
-          )}
+
+          <GameOverlay
+            showGameOver={gameOver !== ''}
+            showGameOverButton={gameOver !== ''}
+            gameOverText={gameOver === 'win' ? 'You win!' : 'You Lose'}
+            gameOverButtonAction={restartClickHandler!}
+          />
         </div>
-      </div>
-
-      <div className="game-instructions">
-        <p className="panel-text panel-text-bold">Instructions</p>
-
-        <ul className="panel-text game-list">
-          <Instructions />
-          {useMatchMedia('DESKTOP') ? (
-            <>
-              <li>Use the MOUSE to select a cell.</li>
-              <li>LEFT-CLICK to reveal a cell.</li>
-              <li>RIGHT-CLICK to mark a cell with a flag.</li>
-            </>
-          ) : (
-            <>
-              <li>Use the d-pad to move Left, Right, Up or Down.</li>
-              <li>Press A to reveal a cell.</li>
-              <li>Press B to mark a cell with a flag.</li>
-            </>
-          )}
-        </ul>
-      </div>
-
-      <div className="game-controls-wrapper">
-        <Controls move={() => null} onStartClickHandler={setRestartGame!} />
       </div>
     </>
   );

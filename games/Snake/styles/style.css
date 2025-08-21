@@ -3,14 +3,15 @@
 .snake-game-wrapper {
   display: grid;
   grid-template-columns: 1fr 4fr;
-  -moz-column-gap: 0.5rem;
-  column-gap: 0.5rem;
+  column-gap: var(--space-s);
   color: var(--color-white);
   margin: 0 auto;
   width: 100%;
   max-height: 100%;
   overflow: hidden;
   max-width: 33rem;
+  background: #161616;
+  padding: var(--space-s);
 }
 
 .snake-board {

@@ -55,17 +55,6 @@
   }
 }
 
-.overlay-text-wrapper {
-  color: var(--color-white);
-  white-space: nowrap;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  outline: 0.4rem solid var(--color-white);
-  outline-offset: 0.4rem;
-}
-
 .overlay-button {
   border: none;
   color: var(--color-black);
@@ -80,13 +69,6 @@
     cursor: pointer;
     text-decoration: underline;
   }
-}
-
-.game-side-details {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  height: auto;
-  max-height: 100%;
 }
 
 .controls-text {
@@ -116,4 +98,31 @@
   list-style: decimal-leading-zero;
   list-style-position: inside;
   padding: 0;
+}
+
+@media (min-width: 768px) {
+  .hide-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .hide-desktop {
+    display: none;
+  }
+}
+
+.game-wrapper-overlay {
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4); 
+  }
 }

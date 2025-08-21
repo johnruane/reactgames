@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import useEventBus from './hooks/useEventBus';
 import { useInterval, useMatchMedia } from './shared/hooks';
 import { cloneDeep } from 'lodash-es';
 
@@ -223,6 +224,11 @@ const Snake = ({ setRestartGame }: { setRestartGame?: () => void }) => {
     setLevelInterval((prev) => (prev !== null ? prev * 0.9 : prev));
   }, levelInterval);
 
+  /*
+   * Event bus setup for control clicks
+   */
+  useEventBus(setProposedSnakeDirection);
+
   return (
     <>
       <div className="gp-game-wrapper snake-game-wrapper">
@@ -238,26 +244,6 @@ const Snake = ({ setRestartGame }: { setRestartGame?: () => void }) => {
             gameOverButtonAction={startGame}
           />
         </div>
-      </div>
-
-      <div className="game-instructions">
-        <p className="panel-text panel-text-bold">Instructions</p>
-
-        <ul className="panel-text game-list">
-          <Instructions />
-          {useMatchMedia('DESKTOP') ? (
-            <li>Use the ARROW keys to move Left, Right, Up or Down.</li>
-          ) : (
-            <li>Use the D-PAD to move Left, Right, Up or Down.</li>
-          )}
-        </ul>
-      </div>
-
-      <div className="game-controls-wrapper">
-        <Controls
-          move={setProposedSnakeDirection}
-          onStartClickHandler={setRestartGame!}
-        />
       </div>
     </>
   );
