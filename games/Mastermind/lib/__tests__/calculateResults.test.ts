@@ -6,7 +6,7 @@ describe('calculateResults', () => {
       guess: ['red', 'blue', 'green', 'yellow'],
       secret: ['red', 'blue', 'green', 'yellow'],
     });
-    expect(result).toEqual([1, 1, 1, 1]);
+    expect(result).toEqual([10, 10, 10, 10]);
   });
 
   it('returns 0 matches and 0 appears for no overlap', () => {
@@ -22,7 +22,7 @@ describe('calculateResults', () => {
       guess: ['red', 'green', 'blue', 'yellow'],
       secret: ['red', 'blue', 'green', 'yellow'],
     });
-    expect(result).toEqual([1, 1, 2, 2]);
+    expect(result).toEqual([10, 10, 11, 11]);
   });
 
   it('counts correct values in wrong positions only as appears', () => {
@@ -30,7 +30,7 @@ describe('calculateResults', () => {
       guess: ['blue', 'red', 'yellow', 'green'],
       secret: ['red', 'blue', 'green', 'yellow'],
     });
-    expect(result).toEqual([2, 2, 2, 2]);
+    expect(result).toEqual([11, 11, 11, 11]);
   });
 
   it('handles duplicates correctly (one matches only)', () => {
@@ -38,7 +38,7 @@ describe('calculateResults', () => {
       guess: ['red', 'red', 'blue', 'blue'],
       secret: ['red', 'blue', 'green', 'yellow'],
     });
-    expect(result).toEqual([1, 2]);
+    expect(result).toEqual([10, 11]);
   });
 
   it('does not double count correct values in wrong positions if also matchesed by index', () => {
@@ -46,6 +46,6 @@ describe('calculateResults', () => {
       guess: ['red', 'blue', 'blue', 'yellow'],
       secret: ['red', 'blue', 'green', 'yellow'],
     });
-    expect(result).toEqual([1, 1, 1]);
+    expect(result).toEqual([10, 10, 10]);
   });
 });

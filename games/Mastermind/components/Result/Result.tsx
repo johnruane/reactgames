@@ -10,16 +10,15 @@ const Result = ({
   rowIndex: number;
   resultValues: number[];
 }) => {
+  console.log(resultValues);
   return (
     <div className={styles['result']}>
       {Array.from({ length: 4 }).map((_, index) => (
         <Cell
           key={`result-cell-${rowIndex}-${index}`}
           dataValue={resultValues[index]}
-          additionalClasses={classNames(
-            styles['result-cell'],
-            styles[`result-cell-${index + 1}`],
-          )}
+          additionalClasses={classNames(styles['result-cell'])}
+          renderColourPalette={false}
         />
       ))}
     </div>

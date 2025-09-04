@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+import useEventBus from './hooks/useEventBus';
 import { useInterval } from './shared/hooks';
 import classNames from 'classnames';
 
@@ -19,6 +20,7 @@ import {
   removeObjectFromArray,
   updateDisplayBoard,
 } from './lib';
+import { getCellElement } from './lib/getCellElement';
 
 import './shared/styles/global.css';
 import style from './styles/style.module.css';
@@ -63,6 +65,7 @@ const Minesweeper = ({
   const [clock, setClock] = useState(0);
   const [gameOver, setGameOver] = useState('');
   const [flagsMarked, setFlagsMarked] = useState<CellPosition[]>([]);
+  const [selectedCellPos, setSelectedCellPos] = useState<string>('');
 
   const gameOverRef = useRef(gameOver);
 
@@ -71,7 +74,9 @@ const Minesweeper = ({
 
     const target = e.target;
     const selectedCellValue = target.getAttribute('data-value');
-    const selectedCellPos = JSON.parse(target.getAttribute('data-pos'));
+
+    const selectedCellPos = target.getAttribute('data-pos');
+    setSelectedCellPos(target.getAttribute('data-pos')); // Store cell position for highlighting
 
     // If cell is a flagged cell stop execution
     if (selectedCellValue === '10') {
@@ -80,7 +85,7 @@ const Minesweeper = ({
 
     const cellsToUpdate = depthFirstSearch({
       board: cluesBoardRef.current,
-      pos: selectedCellPos,
+      pos: JSON.parse(selectedCellPos),
     });
 
     setDisplayBoard((prev) => {
@@ -94,12 +99,67 @@ const Minesweeper = ({
 
     // If cell is 9 (a mine) set 'game over'
     if (
-      getCellValue({ board: cluesBoardRef.current, pos: selectedCellPos }) === 9
+      getCellValue({
+        board: cluesBoardRef.current,
+        pos: JSON.parse(selectedCellPos),
+      }) === 9
     ) {
       setGameOver(GAME_LOSE);
       return;
     }
   };
+
+  const directionMove = (key) => {
+    const { r, c } = JSON.parse(selectedCellPos) || {};
+
+    switch (key) {
+      case 'ArrowUp':
+        if (r !== 0) setSelectedCellPos(`{"r": ${r - 1}, "c": ${c}}`);
+        break;
+      case 'ArrowDown':
+        if (r !== 8) setSelectedCellPos(`{"r": ${r + 1}, "c": ${c}}`);
+        break;
+      case 'ArrowLeft':
+        if (c !== 0) setSelectedCellPos(`{"r": ${r}, "c": ${c - 1}}`);
+        break;
+      case 'ArrowRight':
+        if (c !== 8) setSelectedCellPos(`{"r": ${r}, "c": ${c + 1}}`);
+        break;
+    }
+  };
+
+  const actionButton = (key) => {
+    const cellElement = getCellElement({
+      cellPos: selectedCellPos,
+      boardRef,
+    });
+
+    switch (key) {
+      case 'ActionA':
+        (cellElement as HTMLElement).click();
+        break;
+      case 'ActionB':
+        (cellElement as HTMLElement).dispatchEvent(
+          new MouseEvent('contextmenu', {
+            bubbles: true,
+            cancelable: true,
+            button: 2,
+          }),
+        );
+        break;
+    }
+  };
+
+  const move = (key) => {
+    if (['ArrowRight', 'ArrowLeft', 'ArrowDown', 'ArrowUp'].includes(key)) {
+      directionMove(key);
+    }
+    if (['ActionA', 'ActionB'].includes(key)) {
+      actionButton(key);
+    }
+  };
+
+  useEventBus(move);
 
   useEffect(() => {
     gameOverRef.current = gameOver;
@@ -212,6 +272,20 @@ const Minesweeper = ({
       };
     }
   }, [flagsMarked]);
+
+  /*
+   * This useEffect uses the boardRef and a local state 'selectedCellPos' to add
+   * an outline to the currently selected cell.
+   */
+  useEffect(() => {
+    if (!selectedCellPos) return;
+
+    const allCells = boardRef.current?.querySelectorAll('.board-cell');
+    allCells?.forEach((cell) => cell.classList.remove(style['selected']));
+
+    const cellElement = getCellElement({ cellPos: selectedCellPos, boardRef });
+    (cellElement as Element).classList.add(style['selected']);
+  }, [selectedCellPos]);
 
   /*
    * Interval to update clock every 1000 milliseconds.

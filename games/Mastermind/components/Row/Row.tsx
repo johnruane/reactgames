@@ -7,8 +7,6 @@ import classNames from 'classnames';
 
 import calculateResults from '../../lib/calculateResults';
 
-import CircleFilled from '@svg/global/circle-filled.svg?react';
-
 import styles from './style.module.css';
 
 const MastermindRow = ({
@@ -22,7 +20,8 @@ const MastermindRow = ({
   setActiveRow: React.Dispatch<React.SetStateAction<number>>;
   additionalClasses?: string;
 }) => {
-  const secretCode = useContext(MastermindContext)!;
+  const { secretCode, setWin, setHasGameStarted } =
+    useContext(MastermindContext)!;
 
   const [rowValues, setRowValues] = useState<number[]>(
     activeRow === rowIndex ? [1, 1, 1, 1] : [0, 0, 0, 0],
@@ -30,29 +29,27 @@ const MastermindRow = ({
   const [resultValues, setResultValues] = useState<number[]>([0, 0, 0, 0]);
   const [showResult, setShowResults] = useState(false);
 
-  function handleCellClick(
-    e: React.MouseEvent<HTMLSpanElement>,
-    direction = 'forwards',
-  ) {
-    const cellIndex = Number(e.currentTarget.getAttribute('data-cell'));
+  function handleCellClick(e: React.MouseEvent<HTMLSpanElement>) {
+    const cellParent = Number(e.currentTarget.getAttribute('data-cell-parent'));
+    const cellValue = Number(e.currentTarget.getAttribute('data-value'));
     const newCellValues = Array.from(rowValues);
 
-    if (direction === 'forwards') {
-      newCellValues[cellIndex] =
-        rowValues[cellIndex] < 6 ? rowValues[cellIndex] + 1 : 1;
-    } else {
-      newCellValues[cellIndex] =
-        rowValues[cellIndex] > 1 ? rowValues[cellIndex] - 1 : 6;
-    }
-
+    newCellValues[cellParent] = cellValue;
     setRowValues(newCellValues);
   }
 
   function handleButtonClick() {
-    const results = calculateResults({ guess: rowValues, secret: secretCode });
+    setHasGameStarted(true);
 
+    const results = calculateResults({ guess: rowValues, secret: secretCode });
     setResultValues(results);
     setShowResults(true);
+
+    // Check for win condition: [10, 10, 10, 10] means all 4 exact matches
+    if (results.length === 4 && results.every((result) => result === 10)) {
+      setWin(true);
+    }
+
     setActiveRow((prev) => prev + 1);
   }
 
@@ -66,21 +63,17 @@ const MastermindRow = ({
       className={classNames(styles['row'], additionalClasses)}
       data-row={`row-${rowIndex}`}
     >
-      <div className={styles['arrow']}>
-        <CircleFilled
-          className={classNames({ [styles['hide']]: rowIndex !== activeRow })}
-        />
-      </div>
-
       {Array.from({ length: 4 }).map((_, index) => (
-        <Cell
-          key={`guess-cell-${rowIndex}-${index}`}
-          dataRow={rowIndex}
-          dataCell={index}
-          dataValue={rowValues[index]}
-          onClickHandler={handleCellClick}
-          disable={rowIndex !== activeRow}
-        />
+        <>
+          <Cell
+            key={`guess-cell-${rowIndex}-${index}`}
+            dataRow={rowIndex}
+            dataCell={index}
+            dataValue={rowValues[index]}
+            onClickHandler={handleCellClick}
+            disable={rowIndex !== activeRow}
+          />
+        </>
       ))}
 
       {showResult && <Result rowIndex={rowIndex} resultValues={resultValues} />}
@@ -94,7 +87,7 @@ const MastermindRow = ({
           })}
           onClick={handleButtonClick}
         >
-          GO!
+          Go!
         </button>
       )}
     </div>

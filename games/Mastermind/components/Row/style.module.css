@@ -9,35 +9,23 @@
   align-items: center;
 }
 
-.empty-result, 
-.empty-result::after {
-  width: var(--cell-xl);
-  height: var(--cell-xl);
-  border-radius: var(--border-radius);
-  border: var(--border);
+.empty-result {
+  width: var(--cell-l);
+  height: var(--cell-l);
 }
 
 .button {
   all: unset;
-
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  width: var(--cell-xl);
-  height: var(--cell-xl);
+  width:auto;
+  height: var(--cell-l);
   border-radius: var(--border-radius);
   /* border: var(--border); */
   font-size: 0.75rem;
   font-weight: bold;
-}
-
-.arrow {
-  width: var(--cell-xl);
-  height: var(--cell-xl);
-  justify-content: end;
-  display: flex;
-  align-items: center;
 }
 
 .hide {

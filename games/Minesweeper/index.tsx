@@ -5,6 +5,6 @@ import ReactDOM from 'react-dom/client';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Minesweeper />
+    <Minesweeper restartClickHandler={() => window.location.reload()} />
   </React.StrictMode>,
 );

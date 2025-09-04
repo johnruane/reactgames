@@ -47,8 +47,8 @@ const calculateResults = ({ guess, secret }) => {
   });
 
   return [
-    ...Array.from({ length: matches }, () => 8),
-    ...Array.from({ length: includes }, () => 9),
+    ...Array.from({ length: matches }, () => 10),
+    ...Array.from({ length: includes }, () => 11),
   ].sort();
 };
 

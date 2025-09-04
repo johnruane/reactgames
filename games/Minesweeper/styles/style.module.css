@@ -64,3 +64,9 @@
   }
 }
 
+.selected {
+  outline: 2px solid var(--color-white);
+  outline-offset: -2px;
+  z-index: 1;
+}
+

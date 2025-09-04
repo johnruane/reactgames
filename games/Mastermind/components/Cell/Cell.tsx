@@ -2,7 +2,20 @@ import classNames from 'classnames';
 
 import styles from './style.module.css';
 
+const colours = {
+  1: 'RED',
+  2: 'ORANGE',
+  3: 'YELLOW',
+  4: 'GREEN',
+  5: 'TEAL',
+  6: 'BLUE',
+  7: 'INDIGO',
+  8: 'VIOLET',
+  9: 'BROWN',
+};
+
 const Cell = ({
+  renderColourPalette = true,
   dataRow,
   dataCell,
   dataValue,
@@ -10,6 +23,7 @@ const Cell = ({
   onClickHandler,
   additionalClasses,
 }: {
+  renderColourPalette?: boolean;
   dataRow?: number;
   dataCell?: number;
   dataValue?: number;
@@ -20,22 +34,35 @@ const Cell = ({
   additionalClasses?: string;
   disable?: boolean;
 }) => {
-  function handleRightClick(e) {
-    e.preventDefault();
-    if (onClickHandler) {
-      onClickHandler(e, 'backwards');
-    }
-  }
-
   return (
-    <span
-      className={classNames(styles['cell'], additionalClasses)}
-      data-row={dataRow}
-      data-cell={dataCell}
-      data-value={String(dataValue)}
-      onClick={!disable ? onClickHandler : undefined}
-      onContextMenu={!disable ? handleRightClick : undefined}
-    />
+    <>
+      <div
+        className={classNames(styles['cell'], additionalClasses)}
+        data-row={dataRow}
+        data-cell={dataCell}
+        data-value={String(dataValue)}
+        data-disable={disable}
+      >
+        {renderColourPalette && (
+          <div
+            className={classNames(
+              styles['colour-palette-wrapper'],
+              styles['hide'],
+            )}
+          >
+            {Object.entries(colours).map(([key, value]) => (
+              <button
+                key={key}
+                className={classNames(styles['colour-dot'])}
+                data-cell-parent={dataCell}
+                data-value={key}
+                onClick={!disable ? onClickHandler : undefined}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

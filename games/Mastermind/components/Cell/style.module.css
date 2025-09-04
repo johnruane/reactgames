@@ -1,10 +1,5 @@
-.cell::after {
-  content: '';
-  display: block;
-}
-
-.cell,
-.cell::after {
+.cell {
+  position: relative;
   width: var(--cell-lg);
   height: var(--cell-lg);
   background: var(--cell-background-color);
@@ -14,39 +9,82 @@
     cursor: pointer;
   }
 
-  @media (min-width: 768px) {
+  /* @media (min-width: 768px) {
     width: var(--cell-xl);
     height: var(--cell-xl);
+  } */
+}
+
+.cell,
+.colour-dot  {
+  &[data-value='0'] {
+    border-radius: var(--border-radius);
+    border: var(--border);
+  }
+  &[data-value='1'] {
+    background-color: #D97A7A /* RED */
+  }
+  &[data-value='2'] {
+    background-color: #E3A76F /* ORANGE */
+  }
+  &[data-value='3'] {
+    background-color: #E6D27A /* YELLOW */
+  }
+  &[data-value='4'] {
+    background-color: #8BBF92 /* GREEN */
+  }
+  &[data-value='5'] {
+    background-color: #7FB7B7 /* TEAL */
+  }
+  &[data-value='6'] {
+    background-color: #7A9ED9 /* BLUE */
+  }
+  &[data-value='7'] {
+    background-color: #8C7AD9 /* INDIGO */
+  }
+  &[data-value='8'] {
+    background-color: #B18CCB /* VIOLET */
+  }
+  &[data-value='9'] {
+    background-color: #A8917A /* BROWN */
+  }
+  &[data-value='10'] {
+    background-color: var(--color-white);
+  }
+  &[data-value='11'] {
+    background-color: #454545;
   }
 }
 
-.cell  {
-  &::after {
-    outline: none !important;
-  }
-  &[data-value='1']::after {
-    background-color: #FF7F2A;
-  }
-  &[data-value='2']::after {
-    background-color: #F6BE00;
-  }
-  &[data-value='3']::after {
-    background-color: #9DBE3F;
-  }
-  &[data-value='4']::after {
-    background-color: #7BAFD4;
-  }
-  &[data-value='5']::after {
-    background-color: #A61B29;
-  }
-  &[data-value='6']::after {
-    background-color: #CFA0C8;
-  }
-  &[data-value='8']::after {
-    background-color: #000000;
-  }
-  &[data-value='9']::after {
-    background-color: #FFFFFF;
+.cell[data-disable="false"]:hover .colour-palette-wrapper {
+  display: grid;
+}
+
+.colour-palette-wrapper {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  background: rgb(13, 62, 88);
+  border-radius: 0.75rem;
+  position: absolute;
+  top: 100%;
+  padding: 0.5rem;
+  z-index: 1;
+}
+
+.colour-dot {
+  all: unset;
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+
+  &:hover {
+    outline: 2px solid var(--color-white);
   }
 }
 
+.hide {
+  display: none;
+}

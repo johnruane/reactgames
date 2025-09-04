@@ -225,7 +225,7 @@ const Snake = () => {
 
   return (
     <>
-      <div className="gp-game-wrapper snake-game-wrapper">
+      <div className="snake-game-wrapper">
         <div className="snake-panel-wrapper">
           <Panel sections={[{ heading: 'score', value: score }]} />
         </div>
